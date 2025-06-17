@@ -5,7 +5,7 @@ import { getFacebookUrl, getTwitterUrl, getLinkedinUrl, getWhatsAppUrl, copyToCl
 const BLOG_TITLE = "The Clockwork Girl: A Journey Through Time";
 const BLOG_DESCRIPTION = "Explore the enchanting story of The Clockwork Girl, a tale of adventure, mystery, and the magic of time.";
 const BLOG_IMAGE = "https://tcijrogmncatfkddtyzm.supabase.co/storage/v1/object/public/book/0.9235983413282883.jpg"; // Publicly accessible image for sharing
-const BLOG_URL = "https://yourdomain.com/text"; // Replace with your actual URL
+const BLOG_URL = "https://linda-x-landing-og7otztai-aminigbos-projects.vercel.app/"; // Replace with your actual URL
 
 function TextBlogPost() {
   return (
