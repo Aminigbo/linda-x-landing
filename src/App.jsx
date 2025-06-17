@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import "./App.css";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from "./pages/Home";
 import About from "./pages/About";
 import ContactMe from "./pages/ContactMe";
@@ -35,8 +35,8 @@ function App() {
   }
 
   return (
-    <HashRouter>
-      <ScrollToTop />
+    <Router>
+      {/* <ScrollToTop /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/story/:id" element={<StoryPopup />} />
@@ -52,7 +52,7 @@ function App() {
         <Route path="/all-articles" element={<AllArticles />} />
         <Route path="/articles-upload" element={<ArticlesUpload />} />
       </Routes>
-    </HashRouter>
+    </Router>
   );
 }
 
