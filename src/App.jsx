@@ -17,6 +17,7 @@ import AllStories from "./pages/AllStories";
 import FullArticle from "./pages/FullArticle";
 import ArticlesUpload from "./pages/ArticlesUpload";
 import AllArticles from "./pages/AllArticles";
+import MyPage from "./pages/text";
 
 
 function App() {
@@ -38,7 +39,8 @@ function App() {
     <Router>
       {/* <ScrollToTop /> */}
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<MyPage />} />
         <Route path="/story/:id" element={<StoryPopup />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<ContactMe />} />
