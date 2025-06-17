@@ -96,16 +96,7 @@ function StoryPopup() {
     <>
       <Helmet>
         <title>{story.title}</title>
-        <meta property="og:title" content={story.title} />
-        <meta
-          property="og:description"
-          content={"Read the full story on Linda-X"}
-        />
-        <meta property="og:image" content={story.image_url} />
-        <meta
-          property="og:url"
-          content={`https://linda-x.com/#/story/${story.id}`}
-        />
+        <link rel="icon" type="image" href={story.image_url} /> 
       </Helmet>
       <div className="flex flex-col items-center bg-black min-h-screen p-4">
         <div className="w-full max-w-2xl bg-white rounded-lg shadow-2xl p-6 mt-8 mb-8 animate-fade-in relative">
