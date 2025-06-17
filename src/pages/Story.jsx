@@ -95,7 +95,7 @@ function StoryPopup() {
   return (
     <>
       <Helmet>
-        {/* <title>{story.title}</title>
+        <title>{story.title}</title>
         <link rel="icon" type="image" href={story.image_url} />
         <meta property="og:title" content={"story.title"} />
         <meta
@@ -106,9 +106,9 @@ function StoryPopup() {
         <meta
           property="og:url"
           content={`https://linda-x.com/#/story/${story.id}`}
-        /> */}
+        />
 
-        <title>My Page Title</title>
+        {/* <title>My Page Title</title>
         <meta property="og:title" content="My Page Title" />
         <meta property="og:description" content="Page description here" />
         <meta property="og:image" content="https://example.com/image.jpg" />
@@ -117,7 +117,7 @@ function StoryPopup() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="My Page Title" />
         <meta name="twitter:description" content="Page description here" />
-        <meta name="twitter:image" content="https://example.com/image.jpg" />
+        <meta name="twitter:image" content="https://example.com/image.jpg" /> */}
 
 
       </Helmet>
