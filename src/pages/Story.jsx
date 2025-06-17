@@ -94,9 +94,10 @@ function StoryPopup() {
   // --- Main Render for Displaying the Story ---
   return (
     <>
+    {console.log(story.image_url)}
       <Helmet>
         <title>{story.title}</title>
-        <link rel="icon" type="image" href={story.image_url} />
+        <link rel="icon" type="image/svg+xml" href={story.image_url} />
         <meta property="og:title" content={"story.title"} />
         <meta
           property="og:description"
