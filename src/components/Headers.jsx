@@ -1,16 +1,19 @@
+"use client";
+
 import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom"; // ✅ Fix here
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import "./Header.css";
 import { RiArrowDownSLine } from "react-icons/ri";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
-  const isBookRoute = location.pathname.startsWith("/book"); // ✅ Active check for /book/anything
+  const pathname = usePathname();
+  const isBookRoute = pathname.startsWith("/book");
 
-  const navClass = ({ isActive }) =>
-    isActive
+  const navClass = (href) =>
+    pathname === href
       ? "text-[#CCFF00] font-bold"
       : "hover:text-[#A72024] transition duration-300";
 
@@ -21,9 +24,9 @@ const Header = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm uppercase font-medium">
-          <NavLink to="/" className={navClass}>
+          <Link href="/" className={navClass("/")}>
             Home
-          </NavLink>
+          </Link>
 
           <div className="relative group dropdown-container">
             <span
@@ -39,45 +42,45 @@ const Header = () => {
             <div className="dropdown-menu">
               <ul className="space-y-2 text-white text-sm tracking-wide">
                 <li>
-                  <NavLink
-                    to="/book/woyingi-god-is-a-woman"
-                    className={navClass}
+                  <Link
+                    href="/book/woyingi-god-is-a-woman"
+                    className={navClass("/book/woyingi-god-is-a-woman")}
                   >
                     Tamara: The Gender of God
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink
-                    to="/book/tari-ere-the-picky-virgin"
-                    className={navClass}
+                  <Link
+                    href="/book/tari-ere-the-picky-virgin"
+                    className={navClass("/book/tari-ere-the-picky-virgin")}
                   >
                     She Who Loved A Lie
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
-                  <NavLink
-                    to="/book/the-square-of-lost-sons"
-                    className={navClass}
+                  <Link
+                    href="/book/the-square-of-lost-sons"
+                    className={navClass("/book/the-square-of-lost-sons")}
                   >
                     The Square Of Lost Sons
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
 
-          <NavLink to="/about" className={navClass}>
+          <Link href="/about" className={navClass("/about")}>
             About
-          </NavLink>
-          <NavLink to="/articles" className={navClass}>
+          </Link>
+          <Link href="/articles" className={navClass("/articles")}>
             Articles
-          </NavLink>
-          <NavLink to="/events" className={navClass}>
+          </Link>
+          <Link href="/events" className={navClass("/events")}>
             News & Events
-          </NavLink>
-          <NavLink to="/contact" className={navClass}>
+          </Link>
+          <Link href="/contact" className={navClass("/contact")}>
             Contact
-          </NavLink>
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -97,13 +100,13 @@ const Header = () => {
         <div className="md:hidden fixed top-16 left-12.5 z-50">
           <div className="w-[300px] bg-black border-t-4 border-[#CCFF00] px-6 py-6 text-sm uppercase font-medium animate-slide-down">
             <div className="flex flex-col space-y-4 text-left text-white">
-              <NavLink
-                to="/"
-                className={navClass}
+              <Link
+                href="/"
+                className={navClass("/")}
                 onClick={() => setMenuOpen(false)}
               >
                 Home
-              </NavLink>
+              </Link>
 
               <div>
                 <span
@@ -117,54 +120,54 @@ const Header = () => {
                 </span>
                 <ul className="ml-4 mt-2 space-y-2 text-sm">
                   <li>
-                    <NavLink
-                      to="/book/woyingi-god-is-a-woman"
-                      className={navClass}
+                    <Link
+                      href="/book/woyingi-god-is-a-woman"
+                      className={navClass("/book/woyingi-god-is-a-woman")}
                       onClick={() => setMenuOpen(false)}
                     >
                       Woyingi: God is a Woman
-                    </NavLink>
+                    </Link>
                   </li>
                   <li>
-                    <NavLink
-                      to="/book/tari-ere-the-picky-virgin"
-                      className={navClass}
+                    <Link
+                      href="/book/tari-ere-the-picky-virgin"
+                      className={navClass("/book/tari-ere-the-picky-virgin")}
                       onClick={() => setMenuOpen(false)}
                     >
                       Tari-Ere: The Picky Virgin
-                    </NavLink>
+                    </Link>
                   </li>
                 </ul>
               </div>
 
-              <NavLink
-                to="/about"
-                className={navClass}
+              <Link
+                href="/about"
+                className={navClass("/about")}
                 onClick={() => setMenuOpen(false)}
               >
                 About
-              </NavLink>
-              <NavLink
-                to="/articles"
-                className={navClass}
+              </Link>
+              <Link
+                href="/articles"
+                className={navClass("/articles")}
                 onClick={() => setMenuOpen(false)}
               >
                 Articles
-              </NavLink>
-              <NavLink
-                to="/events"
-                className={navClass}
+              </Link>
+              <Link
+                href="/events"
+                className={navClass("/events")}
                 onClick={() => setMenuOpen(false)}
               >
                 News & Events
-              </NavLink>
-              <NavLink
-                to="/contact"
-                className={navClass}
+              </Link>
+              <Link
+                href="/contact"
+                className={navClass("/contact")}
                 onClick={() => setMenuOpen(false)}
               >
                 Contact
-              </NavLink>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import supabase from "../config/supabaseClient"; // Ensure this path is correct
+"use client";
+
+import React from "react";
+import Link from "next/link";
 
 // Fix: Removed import for 'react-share-social' and imported components from 'react-share'
 import {
@@ -14,50 +15,7 @@ import {
   WhatsappIcon,
 } from "react-share";
 
-function OtherBooks() {
-  const navigate = useNavigate();
-  const [stories, setStories] = useState([]); // State to hold our fetched stories
-  const [loading, setLoading] = useState(true); // Tracks if data is still loading
-  const [error, setError] = useState(null); // Stores any error messages
-
-  useEffect(() => {
-    const fetchStories = async () => {
-      try {
-        setLoading(true); // Start loading
-        setError(null); // Clear any previous errors
-
-        // Fetch only the necessary preview data from your 'stories' table
-        const { data, error } = await supabase
-          .from("stories")
-          .select("id, title, subtitle, description, image_url"); // Requesting only these columns
-
-        if (error) {
-          throw error; // If Supabase returns an error, throw it
-        }
-
-        if (data) {
-          setStories(data); // Update state with fetched stories
-        }
-      } catch (err) {
-        console.error("Error fetching stories:", err); // Log the detailed error
-        setError("Failed to load stories. Please try again later."); // User-friendly error message
-      } finally {
-        setLoading(false); // End loading, regardless of success or failure
-      }
-    };
-
-    fetchStories(); // Call the fetch function when the component mounts
-  }, []); // Empty dependency array means this effect runs once after the initial render
-
-  // --- Conditional Rendering for Loading, Error, and No Stories ---
-  if (loading) {
-    return (
-      <div className="max-w-screen p-10 bg-black relative min-h-screen flex justify-center items-center">
-        <p className="text-white text-xl">Loading stories...</p>
-      </div>
-    );
-  }
-
+function OtherBooks({ stories = [], error = null }) {
   if (error) {
     return (
       <div className="max-w-screen p-10 bg-black relative min-h-screen flex justify-center items-center">
@@ -88,7 +46,7 @@ function OtherBooks() {
           // if you want direct sharing to work from a local environment, or
           // ensure your 'story/:id' route is properly handled by your hosting.
           const shareImageURL = `${story.image_url}`;
-          const storyShareUrl = `https://linda-x.com/#/story/${story.id}`;
+          const storyShareUrl = `https://linda-x.com/story/${story.id}`;
           const shareTitle = `Read "${story.title}" by Linda on My Ebook Site!`; // Customize share title
           const shareDescription = story.description.substring(0, 150) + "..."; // Customize share description
 
@@ -114,12 +72,12 @@ function OtherBooks() {
                 <div className="flex items-center gap-4 mt-4 flex-wrap">
                   {" "}
                   {/* Container for buttons and social share */}
-                  <button
+                  <Link
+                    href={`/story/${story.id}`}
                     className="text-black px-4 py-2 font-semibold hover:bg-[#E02B20] hover:text-white transition rounded"
-                    onClick={() => navigate(`/story/${story.id}`)}
                   >
                     Read more...
-                  </button>
+                  </Link>
                   {/* Share Buttons - Fixed to use react-share components */}
                   <div className="flex gap-2">
                     {" "}

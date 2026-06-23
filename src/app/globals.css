@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+* {
+  font-family: "Lusitana", Georgia, "Times New Roman", serif;
+}
+
+.story-content p,
+.story-content div {
+  margin-bottom: 0.75rem;
+}
+
+.story-content a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.story-content a:hover {
+  color: #1d4ed8;
+}

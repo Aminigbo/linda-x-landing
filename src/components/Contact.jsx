@@ -1,6 +1,7 @@
+"use client";
+
 import React, { useRef, useState } from "react";
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
-import { Link } from "react-router";
 import emailjs from "@emailjs/browser";
 
 function Contact() {
@@ -110,49 +111,49 @@ function Contact() {
           <p>Do get in touch.</p>
           <p>
             Write to me at{" "}
-            <Link
-              to="mailto: hello@linda-x.com"
+            <a
+              href="mailto:hello@linda-x.com"
               className="text-[#a72024] hover:underline"
             >
               hello@linda-x.com
-            </Link>{" "}
+            </a>{" "}
             or contact me on social media below.
           </p>
           <p>
             For events and publicity contact me directly:{" "}
-            <Link
-              to="mailto:booklinda@linda-x.com"
+            <a
+              href="mailto:booklinda@linda-x.com"
               className="text-[#a72024] hover:underline"
             >
               booklinda@linda-x.com.
-            </Link>
+            </a>
           </p>
           <p className="text-center font-semibold">Say hello on social media</p>
           <div className="flex justify-center gap-4 text-2xl">
-            <Link
-              to="https://www.facebook.com/share/16H5Kn7dHk/"
+            <a
+              href="https://www.facebook.com/share/16H5Kn7dHk/"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#a72024] p-2 rounded-full"
             >
               <FaFacebookF className="cursor-pointer" />
-            </Link>
-            <Link
-              to="https://www.linkedin.com/in/linda-somiari-stewart-858556150?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+            </a>
+            <a
+              href="https://www.linkedin.com/in/linda-somiari-stewart-858556150?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#a72024] p-2 rounded-full"
             >
               <FaLinkedinIn className="cursor-pointer" />
-            </Link>
-            <Link
-              to="https://www.instagram.com/lindasomiari?igsh=MWw1YjRnanBteDMybw=="
+            </a>
+            <a
+              href="https://www.instagram.com/lindasomiari?igsh=MWw1YjRnanBteDMybw=="
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#a72024] p-2 rounded-full"
             >
               <FaInstagram className="cursor-pointer" />
-            </Link>
+            </a>
           </div>
         </div>
       </div>

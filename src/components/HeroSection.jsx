@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import AnimatedTitle from "./AnimatedTitle";
+import { imageSrc } from "@/lib/image";
 
 function HeroSection({ section }) {
   const { id, title, description, link, image, background, color, extraImg } =
@@ -10,7 +13,7 @@ function HeroSection({ section }) {
     <div
       className="relative w-full min-h-[90vh] bg-cover bg-center bg-no-repeat flex flex-wrap items-center justify-center py-10 px-6 sm:px-12"
       id={id}
-      style={{ backgroundImage: `url(${background})` }}
+      style={{ backgroundImage: `url(${imageSrc(background)})` }}
     >
       <div className="absolute inset-0 bg-black opacity-90 z-0"></div>
 
@@ -32,7 +35,7 @@ function HeroSection({ section }) {
           </h1>
           {description && <p className="text-lg md:text-xl">{description}</p>}
           <div className="hidden md:block mt-6 justify-center">
-            <Link to={link}>
+            <Link href={link}>
               <button
                 className="mt-4 text-black px-6 py-3 hover:bg-transparent hover:border-2 transition"
                 style={{
@@ -47,16 +50,16 @@ function HeroSection({ section }) {
           </div>
           {extraImg && (
             <div className="absolute lg:top-75 -bottom-8 left-55">
-              <img src={extraImg} alt="" className="lg:w-[150px] w-[100px]" />
+              <img src={imageSrc(extraImg)} alt="" className="lg:w-[150px] w-[100px]" />
             </div>
           )}
         </div>
 
         {/* Image Content */}
         <div className="flex justify-center md:justify-end">
-          <Link to={link}>
+          <Link href={link}>
             <img
-              src={image}
+              src={imageSrc(image)}
               alt="Cover"
               className="w-full max-w-xs sm:max-w-sm md:max-w-sm shadow-lg"
             />
@@ -65,7 +68,7 @@ function HeroSection({ section }) {
 
         {/* Mobile Button */}
         <div className="block md:hidden mt-6 order-3 w-full text-center">
-          <Link to={link}>
+          <Link href={link}>
             <button
               className="w-[180px] hover:bg-transparent hover:border text-black px-5 py-3 text-sm transition-all duration-300"
               style={{

@@ -1,7 +1,9 @@
+"use client";
+
 import React from "react";
 import Img from "../assets/WOYINGI.jpeg.jpg";
 import Img2 from "../assets/TARI.jpeg.jpg";
-import { Link } from "react-router";
+import { imageSrc } from "@/lib/image";
 
 function OtherSection() {
   const [showPopup, setShowPopup] = React.useState(false);
@@ -26,7 +28,7 @@ function OtherSection() {
             className="w-full max-w-[180px] hover:scale-105 transition-transform duration-300"
           >
             <img
-              src={image}
+              src={imageSrc(image)}
               alt={`Anna's book ${index + 1}`}
               className="w-full h-auto shadow-lg rounded-md cursor-pointer"
               onClick={handleClick}
@@ -45,9 +47,9 @@ function OtherSection() {
             </button>
             <p>
               Contact the author{" "}
-              <Link to="mailto:hello@linda-x.com" className=" text-[#A72024]">
+              <a href="mailto:hello@linda-x.com" className=" text-[#A72024]">
                 hello@linda-x.com.
-              </Link>
+              </a>
             </p>
           </div>
         </div>

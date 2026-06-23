@@ -1,11 +1,13 @@
-/* eslint-disable no-unused-vars */
+"use client";
+
 import React from "react";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Img from "../assets/FB_IMG_1743869048255.jpg";
+import { imageSrc } from "@/lib/image";
 
 function SideNav() {
-  const location = useLocation();
+  const pathname = usePathname();
 
   // Define nav links
   const navLinks = [
@@ -17,7 +19,7 @@ function SideNav() {
   ];
   // Find active link
   const activeLink = navLinks.find((link) =>
-    location.pathname.startsWith(link.to)
+    pathname.startsWith(link.to)
   );
   const header = activeLink ? activeLink.label : "ADMIN";
 
@@ -28,9 +30,9 @@ function SideNav() {
         {navLinks.map((link) => (
           <li className="mb-10" key={link.to}>
             <Link
-              to={link.to}
+              href={link.to}
               className={`hover:underline ${
-                location.pathname.startsWith(link.to)
+                pathname.startsWith(link.to)
                   ? "font-bold underline"
                   : ""
               }`}
@@ -42,7 +44,7 @@ function SideNav() {
       </ul>
       <div className="flex items-center">
         <img
-          src={Img}
+          src={imageSrc(Img)}
           alt="Admin Avatar"
           className="w-14 h-14 rounded-full mb-4 object-cover mr-4"
           style={{ border: "2px solid #E02B20" }}

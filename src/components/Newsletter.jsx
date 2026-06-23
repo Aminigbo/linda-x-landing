@@ -1,7 +1,10 @@
+"use client";
+
 import React, { useRef, useState } from "react";
 import Img from "../assets/FB_IMG_1743869048255.jpg";
 import BackgroundImg from "../assets/background3.jpg";
 import emailjs from "@emailjs/browser";
+import { imageSrc } from "@/lib/image";
 
 function Newsletter() {
   const form = useRef();
@@ -35,13 +38,13 @@ function Newsletter() {
   return (
     <div
       className="relative w-full min-h-[90vh] bg-cover bg-center bg-no-repeat flex items-center justify-center px-6 sm:px-12"
-      style={{ backgroundImage: `url(${BackgroundImg})` }}
+      style={{ backgroundImage: `url(${imageSrc(BackgroundImg)})` }}
     >
       <div className="absolute inset-0 bg-[#080808] opacity-90 z-0"></div>
       <div className="relative z-10 max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 text-white py-20 px-10">
         <div className="flex justify-center md:justify-end lg:mr-15 ">
           <img
-            src={Img}
+            src={imageSrc(Img)}
             alt=""
             className="w-full max-w-xs sm:max-w-sm md:max-w-sm shadow-lg"
           />

@@ -1,11 +1,12 @@
 import BackgroundImg from "../assets/about-bg.jpg";
 import Img from "../assets/FB_IMG_1743869048255.jpg";
+import { imageSrc } from "@/lib/image";
 
 function AboutUs() {
   return (
     <div
       className="relative w-full min-h-screen bg-cover bg-center bg-no-repeat flex items-center px-4"
-      style={{ backgroundImage: `url(${BackgroundImg})` }}
+      style={{ backgroundImage: `url(${imageSrc(BackgroundImg)})` }}
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-[#080808] opacity-90 z-0" />
@@ -15,7 +16,7 @@ function AboutUs() {
         {/* Image Section */}
         <div className="flex justify-center items-start">
           <img
-            src={Img}
+            src={imageSrc(Img)}
             alt="Linda"
             className="w-full max-w-[350px] md:h-[450px] object-cover shadow-xl rounded-sm"
           />
