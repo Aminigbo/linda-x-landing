@@ -7,13 +7,8 @@ import {
   WhatsappIcon,
 } from "react-share";
 
-export default function StoryShareButtons({
-  shareUrl,
-  title,
-  description = "",
-}) {
+export default function StoryShareButtons({ shareUrl, title }) {
   const shareTitle = `Read "${title}" by Linda Somiari-Stewart`;
-  const shareSummary = description || shareTitle;
 
   const shareLinks = [
     {
@@ -28,7 +23,7 @@ export default function StoryShareButtons({
     },
     {
       label: "Share on LinkedIn",
-      href: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(shareTitle)}&summary=${encodeURIComponent(shareSummary)}`,
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
       icon: <LinkedinIcon size={32} round />,
     },
     {

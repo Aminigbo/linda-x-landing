@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import SuggestedStories from "@/components/SuggestedStories";
 import StoryShareButtons from "@/components/StoryShareButtons";
 import { getStories, getStory } from "@/lib/content";
+import { sanitizeMetaText } from "@/lib/metadata";
 import { getSiteUrl } from "@/lib/site";
 
 export async function generateMetadata({ params }) {
@@ -20,22 +21,23 @@ export async function generateMetadata({ params }) {
     : story.image_url
       ? `${siteUrl}${story.image_url}`
       : null;
-  const description = story.description || story.title;
+  const description = sanitizeMetaText(story.description || story.title, 200);
+  const ogTitle = sanitizeMetaText(story.title, 100);
 
   return {
     title: story.title,
     description,
     openGraph: {
-      title: story.title,
+      title: ogTitle,
       description,
       url: shareUrl,
       siteName: "LINDA SOMAIRI-STEWART",
-      images: imageUrl ? [{ url: imageUrl, alt: story.title }] : [],
+      images: imageUrl ? [{ url: imageUrl, alt: ogTitle }] : [],
       type: "article",
     },
     twitter: {
       card: "summary_large_image",
-      title: story.title,
+      title: ogTitle,
       description,
       images: imageUrl ? [imageUrl] : [],
     },
@@ -116,12 +118,7 @@ export default async function StoryPage({ params }) {
             {story.title}
           </h1>
 
-          <StoryShareButtons
-            shareUrl={shareUrl}
-            title={story.title}
-            description={story.description ?? ""}
-            imageUrl={imageUrl}
-          />
+          <StoryShareButtons shareUrl={shareUrl} title={story.title} />
 
           <div
             id="popup-story-content"
