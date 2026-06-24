@@ -16,11 +16,7 @@ export async function generateMetadata({ params }) {
 
   const siteUrl = getSiteUrl();
   const shareUrl = `${siteUrl}/story/${id}`;
-  const imageUrl = story.image_url?.startsWith("http")
-    ? story.image_url
-    : story.image_url
-      ? `${siteUrl}${story.image_url}`
-      : null;
+  const imageUrl = story.image_url ? `${siteUrl}/api/og/story/${id}` : null;
   const description = sanitizeMetaText(story.description || story.title, 200);
   const ogTitle = sanitizeMetaText(story.title, 100);
 
