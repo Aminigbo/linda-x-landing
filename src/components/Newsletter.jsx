@@ -1,38 +1,31 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Img from "../assets/FB_IMG_1743869048255.jpg";
 import BackgroundImg from "../assets/background3.jpg";
-import emailjs from "@emailjs/browser";
 import { imageSrc } from "@/lib/image";
+import { joinReadersClub } from "@/lib/readersClub";
 
 function Newsletter() {
-  const form = useRef();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
-  const sendEmail = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     setIsLoading(true);
 
-    emailjs
-      .sendForm(
-        "service_ksl2iz5",
-        "template_jmuw2i8",
-        form.current,
-        "sMgIbMrARNZ48i5Hy"
-      )
-      .then(
-        () => {
-          setIsLoading(false);
-          setIsSubmitted(true);
-        },
-        (error) => {
-          setIsLoading(false);
-          alert("Failed to send message. Please try again.");
-          console.error(error);
-        }
-      );
+    try {
+      await joinReadersClub({ name, email });
+      setIsSubmitted(true);
+    } catch (err) {
+      setError(err.message || "Failed to join. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -40,7 +33,7 @@ function Newsletter() {
       className="relative w-full min-h-[90vh] bg-cover bg-center bg-no-repeat flex items-center justify-center px-6 sm:px-12"
       style={{ backgroundImage: `url(${imageSrc(BackgroundImg)})` }}
     >
-      <div className="absolute inset-0 bg-[#080808] opacity-90 z-0"></div>
+      <div className="absolute inset-0 bg-[#080808] opacity-90 z-0 pointer-events-none" />
       <div className="relative z-10 max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 text-white py-20 px-10">
         <div className="flex justify-center md:justify-end lg:mr-15 ">
           <img
@@ -63,15 +56,14 @@ function Newsletter() {
           {isSubmitted ? (
             <div className="bg-[#A72024] p-6 rounded-md text-center shadow-md flex flex-col items-center">
               <p className="text-lg text-white mb-6">
-                Thanks for coming aboard! Keep an eye on your inbox for the
-                confirmation mail.
+                Thanks for coming aboard! You&apos;re now on the Readers&apos;
+                Club list.
               </p>
               <button
                 className="mt-2 p-3 rounded-full bg-[#D7FF00] hover:bg-[#b6cc00] transition-colors"
-                onClick={() => window.location.reload(true)}
+                onClick={() => window.location.reload()}
                 aria-label="Refresh"
               >
-                {/* Refresh Icon (SVG) */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-7 w-7 text-[#A72024]"
@@ -89,22 +81,36 @@ function Newsletter() {
               </button>
             </div>
           ) : (
-            <form className="space-y-4" ref={form} onSubmit={sendEmail}>
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <input
                 type="text"
                 placeholder="Name"
-                name="first-name"
-                className="w-full h-12 bg-[#323131] pl-5 rounded-sm"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                autoComplete="name"
+                className="w-full h-12 bg-[#323131] pl-5 rounded-sm text-white"
               />
               <input
                 type="email"
                 placeholder="Email"
                 name="email"
-                className="w-full h-12 bg-[#323131] pl-5 rounded-sm"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                autoComplete="email"
+                className="w-full h-12 bg-[#323131] pl-5 rounded-sm text-white"
               />
+              {error && (
+                <p className="text-sm text-red-400 bg-red-950/40 border border-red-800 rounded-sm px-3 py-2">
+                  {error}
+                </p>
+              )}
               <button
                 type="submit"
-                className="w-full text-center text-white bg-[#a72024] h-12 text-lg"
+                disabled={isLoading}
+                className="w-full text-center text-white bg-[#a72024] h-12 text-lg disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <span className="animate-pulse tracking-widest">...</span>

@@ -1,54 +1,36 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import BackgroundImg from "../assets/about-bg.jpg";
 import Img from "../assets/FB_IMG_1743869068178.jpg";
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import Header from "../components/Headers";
 import Footer from "../components/Footer";
-import emailjs from "@emailjs/browser";
 import { imageSrc } from "@/lib/image";
+import { joinReadersClub } from "@/lib/readersClub";
 
 function ContactMe() {
-  const form = useRef();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
-  const sendEmail = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     setIsLoading(true);
 
-    emailjs
-      .sendForm(
-        "service_ksl2iz5",
-        "template_jmuw2i8",
-        form.current,
-        "sMgIbMrARNZ48i5Hy"
-      )
-      .then(
-        () => {
-          setIsLoading(false);
-          setIsSubmitted(true);
-          // Send a confirmation email to the subscriber
-          const formData = new FormData(form.current);
-          const subscriberEmail = formData.get("email");
-          emailjs.send(
-            "service_ksl2iz5",
-            "template_jmuw2i8", // You need to create this template in EmailJS
-            {
-              to_email: subscriberEmail,
-              first_name: formData.get("first-name"),
-              last_name: formData.get("last-name"),
-            },
-            "sMgIbMrARNZ48i5Hy"
-          );
-        },
-        (error) => {
-          setIsLoading(false);
-          alert("Failed to send message. Please try again.");
-          console.error(error);
-        }
-      );
+    try {
+      const name = `${firstName} ${lastName}`.trim();
+      await joinReadersClub({ name, email });
+      setIsSubmitted(true);
+    } catch (err) {
+      setError(err.message || "Failed to join. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -176,7 +158,7 @@ function ContactMe() {
                   Thanks for coming aboard!
                 </h3>
                 <p className="text-lg text-white">
-                  Keep an eye on your inbox for the confirmation mail.
+                  You&apos;re now on the Readers&apos; Club list.
                 </p>
                 <button
                   className="mt-6 px-6 py-2 text-white font-semibold"
@@ -201,13 +183,14 @@ function ContactMe() {
             ) : (
               <form
                 className="space-y-4 bg-[#323131] p-6"
-                ref={form}
-                onSubmit={sendEmail}
+                onSubmit={handleSubmit}
               >
                 <input
                   type="text"
                   placeholder="First Name"
                   name="first-name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   className="w-full h-12 bg-white text-black pl-4 rounded-sm"
                   required
                 />
@@ -215,6 +198,8 @@ function ContactMe() {
                   type="text"
                   placeholder="Last Name"
                   name="last-name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   className="w-full h-12 bg-white text-black pl-4 rounded-sm"
                   required
                 />
@@ -222,12 +207,20 @@ function ContactMe() {
                   type="email"
                   placeholder="Email"
                   name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full h-12 bg-white text-black pl-4 rounded-sm"
                   required
                 />
+                {error && (
+                  <p className="text-sm text-red-300 bg-red-950/40 border border-red-800 rounded-sm px-3 py-2">
+                    {error}
+                  </p>
+                )}
                 <button
                   type="submit"
-                  className="w-full h-12 bg-[#a72024] hover:bg-[#87191d] text-white text-lg rounded-sm transition flex items-center justify-center"
+                  disabled={isLoading}
+                  className="w-full h-12 bg-[#a72024] hover:bg-[#87191d] text-white text-lg rounded-sm transition flex items-center justify-center disabled:opacity-60"
                 >
                   {isLoading ? (
                     <span className="animate-pulse tracking-widest">...</span>

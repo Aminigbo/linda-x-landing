@@ -1,36 +1,29 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
-import emailjs from "@emailjs/browser";
+import { joinReadersClub } from "@/lib/readersClub";
 
 function Contact() {
-  const form = useRef();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
-  const sendEmail = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     setIsLoading(true);
 
-    emailjs
-      .sendForm(
-        "service_ksl2iz5",
-        "template_jmuw2i8",
-        form.current,
-        "sMgIbMrARNZ48i5Hy"
-      )
-      .then(
-        () => {
-          setIsLoading(false);
-          setIsSubmitted(true);
-        },
-        (error) => {
-          setIsLoading(false);
-          alert("Failed to send message. Please try again.");
-          console.error(error);
-        }
-      );
+    try {
+      await joinReadersClub({ name, email });
+      setIsSubmitted(true);
+    } catch (err) {
+      setError(err.message || "Failed to join. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -51,8 +44,8 @@ function Contact() {
         {isSubmitted ? (
           <div className="bg-[#A72024] p-6 rounded-md text-center shadow-md">
             <p className="text-lg text-white">
-              Thanks for coming aboard! Keep an eye on your inbox for the
-              confirmation mail.
+              Thanks for coming aboard! You&apos;re now on the Readers&apos;
+              Club list.
             </p>
             <button
               className="mt-6 px-6 py-2 text-white font-semibold"
@@ -75,22 +68,34 @@ function Contact() {
             </button>
           </div>
         ) : (
-          <form className="space-y-4" ref={form} onSubmit={sendEmail}>
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <input
               type="text"
               placeholder="Name"
-              name="first-name"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
               className="w-full h-12 bg-[#323131] pl-5 rounded-sm"
             />
             <input
               type="email"
               placeholder="Email"
               name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
               className="w-full h-12 bg-[#323131] pl-5 rounded-sm"
             />
+            {error && (
+              <p className="text-sm text-red-400 bg-red-950/40 border border-red-800 rounded-sm px-3 py-2">
+                {error}
+              </p>
+            )}
             <button
               type="submit"
-              className="w-full text-center text-white bg-[#a72024] h-12 text-lg"
+              disabled={isLoading}
+              className="w-full text-center text-white bg-[#a72024] h-12 text-lg disabled:opacity-60"
             >
               {isLoading ? (
                 <span className="animate-pulse tracking-widest">...</span>

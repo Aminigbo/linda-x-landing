@@ -1,9 +1,5 @@
-import Login from "@/views/Login";
+import { redirect } from "next/navigation";
 
-export const metadata = {
-  title: "Admin Login",
-};
-
-export default function LoginPage() {
-  return <Login />;
+export default function LegacyLoginPage() {
+  redirect("/admin/login");
 }

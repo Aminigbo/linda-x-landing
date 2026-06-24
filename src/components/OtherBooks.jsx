@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 // Fix: Removed import for 'react-share-social' and imported components from 'react-share'
 import {
@@ -15,7 +16,42 @@ import {
   WhatsappIcon,
 } from "react-share";
 
+const MAX_DESCRIPTION_LENGTH = 100;
+
+const gridVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 36 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] },
+  },
+};
+
+function truncateDescription(text, maxLength = MAX_DESCRIPTION_LENGTH) {
+  if (!text) return { preview: "", isTruncated: false };
+
+  if (text.length <= maxLength) {
+    return { preview: text, isTruncated: false };
+  }
+
+  const preview = text.slice(0, maxLength).replace(/\s+\S*$/, "").trimEnd();
+  return { preview, isTruncated: true };
+}
+
 function OtherBooks({ stories = [], error = null }) {
+  const router = useRouter();
+
   if (error) {
     return (
       <div className="max-w-screen p-10 bg-black relative min-h-screen flex justify-center items-center">
@@ -36,57 +72,86 @@ function OtherBooks({ stories = [], error = null }) {
 
   return (
     <div className="max-w-screen p-10 bg-black relative">
-      <h1 className="text-center text-3xl md:text-5xl mb-10 text-[#E02B20]">
+      <motion.h1
+        className="text-center text-3xl md:text-5xl mb-10 text-[#E02B20]"
+        initial={{ opacity: 0, y: -24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         Short Stories By Linda
-      </h1>
-      <div className="grid gap-8 transition-all duration-300">
+      </motion.h1>
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        variants={gridVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.08 }}
+      >
         {stories.map((story) => {
-          // Construct the dynamic URL for each story
-          // IMPORTANT: Replace 'window.location.origin' with your actual deployed domain
-          // if you want direct sharing to work from a local environment, or
-          // ensure your 'story/:id' route is properly handled by your hosting.
           const shareImageURL = `${story.image_url}`;
           const storyShareUrl = `https://linda-x.com/story/${story.id}`;
-          const shareTitle = `Read "${story.title}" by Linda on My Ebook Site!`; // Customize share title
-          const shareDescription = story.description.substring(0, 150) + "..."; // Customize share description
+          const shareTitle = `Read "${story.title}" by Linda on My Ebook Site!`;
+          const { preview: descriptionPreview, isTruncated } = truncateDescription(
+            story.description
+          );
+          const shareDescription =
+            story.description?.length > 150
+              ? story.description.substring(0, 150) + "..."
+              : story.description || "";
+
+          const storyPath = `/story/${story.id}`;
 
           return (
-            <div
-              key={story.id} // Use the unique 'id' from Supabase for React's key prop
-              className="flex gap-6 items-start bg-gray-100 rounded-lg shadow-md p-5 relative flex-wrap"
+            <motion.div
+              key={story.id}
+              variants={cardVariants}
+              whileHover={{ y: -8, transition: { duration: 0.25 } }}
+              role="link"
+              tabIndex={0}
+              onClick={() => router.push(storyPath)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  router.push(storyPath);
+                }
+              }}
+              className="flex flex-col bg-gray-100 rounded-lg shadow-md overflow-hidden h-full hover:shadow-xl transition-shadow duration-300 cursor-pointer"
             >
-              <img
-                src={story.image_url} // Use the image_url from Supabase
-                alt={story.title}
-                className="w-30 h-40 object-cover rounded-md shadow"
-              />
-              <div className="flex-1">
-                <h2 className="m-0 mb-2 font-serif text-xl text-gray-900">
+              <div className="overflow-hidden">
+                <motion.img
+                  src={story.image_url}
+                  alt={story.title}
+                  className="w-full aspect-[5/4] object-cover object-top"
+                  whileHover={{ scale: 1.06 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                />
+              </div>
+              <div className="flex flex-col flex-1 p-4">
+                <h2 className="m-0 mb-2 font-serif text-lg text-gray-900 leading-snug">
                   {story.title}
                 </h2>
-                {/* Conditionally render subtitle if it exists */}
                 {story.subtitle && (
-                  <p className="italic text-gray-500 mb-3">{story.subtitle}</p>
+                  <p className="italic text-gray-500 text-sm mb-2 line-clamp-2">
+                    {story.subtitle}
+                  </p>
                 )}
-                <p className="text-gray-700 mb-2">{story.description}</p>
-                <div className="flex items-center gap-4 mt-4 flex-wrap">
-                  {" "}
-                  {/* Container for buttons and social share */}
-                  <Link
-                    href={`/story/${story.id}`}
-                    className="text-black px-4 py-2 font-semibold hover:bg-[#E02B20] hover:text-white transition rounded"
-                  >
-                    Read more...
-                  </Link>
-                  {/* Share Buttons - Fixed to use react-share components */}
-                  <div className="flex gap-2">
-                    {" "}
-                    {/* Container for individual share buttons */}
+                <p className="text-gray-700 text-sm mb-4 flex-1">
+                  {descriptionPreview}
+                  {isTruncated ? "..." : ""}{" "}
+                  <span className="font-semibold text-[#E02B20]">Read More...</span>
+                </p>
+                <div
+                  className="flex flex-col gap-3 mt-auto"
+                  onClick={(e) => e.stopPropagation()}
+                  onKeyDown={(e) => e.stopPropagation()}
+                >
+                  <div className="flex gap-2 flex-wrap cursor-default">
                     <FacebookShareButton url={storyShareUrl} image_url={shareImageURL} quote={shareTitle}>
-                      <FacebookIcon size={32} round />
+                      <FacebookIcon size={28} round />
                     </FacebookShareButton>
                     <TwitterShareButton url={storyShareUrl} title={shareTitle} image_url={shareImageURL}>
-                      <TwitterIcon size={32} round />
+                      <TwitterIcon size={28} round />
                     </TwitterShareButton>
                     <LinkedinShareButton
                       url={storyShareUrl}
@@ -94,18 +159,18 @@ function OtherBooks({ stories = [], error = null }) {
                       summary={shareDescription}
                       image_url={shareImageURL}
                     >
-                      <LinkedinIcon size={32} round />
+                      <LinkedinIcon size={28} round />
                     </LinkedinShareButton>
                     <WhatsappShareButton url={storyShareUrl} title={shareTitle} image_url={shareImageURL}>
-                      <WhatsappIcon size={32} round />
+                      <WhatsappIcon size={28} round />
                     </WhatsappShareButton>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           );
         })}
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -6,12 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "create-admin": "node scripts/create-admin.mjs",
+    "setup-readers-club": "node scripts/setup-readers-club.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@phntms/react-share": "^1.0.2-rc1",
     "@supabase/supabase-js": "^2.47.4-rc.1",
+    "@tinymce/tinymce-react": "^6.3.0",
+    "date-fns": "^4.4.0",
     "framer-motion": "^12.9.7",
     "lucide-react": "^0.501.0",
     "next": "^15.3.0",

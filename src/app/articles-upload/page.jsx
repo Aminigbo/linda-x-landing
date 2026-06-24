@@ -1,9 +1,5 @@
-import ArticlesUpload from "@/views/ArticlesUpload";
+import { redirect } from "next/navigation";
 
-export const metadata = {
-  title: "Upload Article",
-};
-
-export default function ArticlesUploadPage() {
-  return <ArticlesUpload />;
+export default function LegacyArticlesUploadPage() {
+  redirect("/admin/new-post");
 }

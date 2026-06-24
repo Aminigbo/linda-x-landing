@@ -1,9 +1,5 @@
-import Upload from "@/views/Upload";
+import { redirect } from "next/navigation";
 
-export const metadata = {
-  title: "Upload Story",
-};
-
-export default function UploadPage() {
-  return <Upload />;
+export default function LegacyUploadsPage() {
+  redirect("/admin/new-post");
 }
