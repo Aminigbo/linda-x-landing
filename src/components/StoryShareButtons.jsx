@@ -9,7 +9,6 @@ import {
 
 export default function StoryShareButtons({ shareUrl, title }) {
   const shareTitle = `Read "${title}" by Linda Somiari-Stewart`;
-  const linkedInText = `${shareTitle}\n\n${shareUrl}`;
 
   const shareLinks = [
     {
@@ -24,7 +23,7 @@ export default function StoryShareButtons({ shareUrl, title }) {
     },
     {
       label: "Share on LinkedIn",
-      href: `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(linkedInText)}`,
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
       icon: <LinkedinIcon size={32} round />,
     },
     {

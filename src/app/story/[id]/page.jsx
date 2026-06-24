@@ -6,6 +6,13 @@ import { getStories, getStory } from "@/lib/content";
 import { sanitizeMetaText } from "@/lib/metadata";
 import { getSiteUrl } from "@/lib/site";
 
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const { data: stories } = await getStories();
+  return (stories ?? []).map((story) => ({ id: story.id }));
+}
+
 export async function generateMetadata({ params }) {
   const { id } = await params;
   const { data: story } = await getStory(id);
