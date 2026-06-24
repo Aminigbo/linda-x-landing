@@ -11,23 +11,14 @@ export default function StoryShareButtons({
   shareUrl,
   title,
   description = "",
-  imageUrl = "",
 }) {
   const shareTitle = `Read "${title}" by Linda Somiari-Stewart`;
   const shareSummary = description || shareTitle;
 
-  const facebookHref = imageUrl
-    ? `https://www.facebook.com/sharer.php?s=100&p[url]=${encodeURIComponent(shareUrl)}&p[title]=${encodeURIComponent(shareTitle)}&p[summary]=${encodeURIComponent(shareSummary)}&p[images][0]=${encodeURIComponent(imageUrl)}`
-    : `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareTitle)}`;
-
-  const whatsappText = imageUrl
-    ? `${shareTitle}\n${shareUrl}\n${imageUrl}`
-    : `${shareTitle} ${shareUrl}`;
-
   const shareLinks = [
     {
       label: "Share on Facebook",
-      href: facebookHref,
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
       icon: <FacebookIcon size={32} round />,
     },
     {
@@ -37,12 +28,12 @@ export default function StoryShareButtons({
     },
     {
       label: "Share on LinkedIn",
-      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
+      href: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(shareTitle)}&summary=${encodeURIComponent(shareSummary)}`,
       icon: <LinkedinIcon size={32} round />,
     },
     {
       label: "Share on WhatsApp",
-      href: `https://wa.me/?text=${encodeURIComponent(whatsappText)}`,
+      href: `https://wa.me/?text=${encodeURIComponent(`${shareTitle}\n${shareUrl}`)}`,
       icon: <WhatsappIcon size={32} round />,
     },
   ];

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import SuggestedStories from "@/components/SuggestedStories";
 import StoryShareButtons from "@/components/StoryShareButtons";
 import { getStories, getStory } from "@/lib/content";
+import { getSiteUrl } from "@/lib/site";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
@@ -12,7 +13,7 @@ export async function generateMetadata({ params }) {
     return { title: "Story Not Found" };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://linda-x.com";
+  const siteUrl = getSiteUrl();
   const shareUrl = `${siteUrl}/story/${id}`;
   const imageUrl = story.image_url?.startsWith("http")
     ? story.image_url
@@ -55,7 +56,7 @@ export default async function StoryPage({ params }) {
     .filter((s) => s.id !== id)
     .slice(0, 5);
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://linda-x.com";
+  const siteUrl = getSiteUrl();
   const shareUrl = `${siteUrl}/story/${id}`;
   const imageUrl = story?.image_url?.startsWith("http")
     ? story.image_url

@@ -1,7 +1,8 @@
 import "./globals.css";
+import { getSiteUrl } from "@/lib/site";
 
 export const metadata = {
-  metadataBase: new URL("https://linda-x.com"),
+  metadataBase: new URL(getSiteUrl()),
   title: {
     default: "LINDA SOMAIRI-STEWART",
     template: "%s | LINDA SOMAIRI-STEWART",
