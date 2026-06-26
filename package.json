@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "create-admin": "node scripts/create-admin.mjs",
-    "setup-readers-club": "node scripts/setup-readers-club.mjs"
+    "setup-readers-club": "node scripts/setup-readers-club.mjs",
+    "create-readers-club-table": "node scripts/create-readers-club-table.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

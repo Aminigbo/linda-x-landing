@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServiceClient } from "@/lib/supabase/server";
 
 export async function POST(request) {
   let body;
@@ -21,7 +21,15 @@ export async function POST(request) {
     return NextResponse.json({ error: "A valid email is required" }, { status: 400 });
   }
 
-  const supabase = createServerClient();
+  let supabase;
+  try {
+    supabase = createServiceClient();
+  } catch {
+    return NextResponse.json(
+      { error: "Server is not configured for Readers' Club signups" },
+      { status: 500 }
+    );
+  }
 
   const { data, error } = await supabase
     .from("readers_club")

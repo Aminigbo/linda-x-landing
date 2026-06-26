@@ -3,18 +3,8 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-
-// Fix: Removed import for 'react-share-social' and imported components from 'react-share'
-import {
-  FacebookShareButton,
-  TwitterShareButton,
-  LinkedinShareButton,
-  FacebookIcon, // Import icons for convenience
-  TwitterIcon,
-  LinkedinIcon,
-  WhatsappShareButton,
-  WhatsappIcon,
-} from "react-share";
+import SocialShareButtons from "@/components/SocialShareButtons";
+import { getStoryShareUrl } from "@/lib/share";
 
 const MAX_DESCRIPTION_LENGTH = 100;
 
@@ -89,16 +79,11 @@ function OtherBooks({ stories = [], error = null }) {
         viewport={{ once: true, amount: 0.08 }}
       >
         {stories.map((story) => {
-          const shareImageURL = `${story.image_url}`;
-          const storyShareUrl = `https://linda-x.com/story/${story.id}`;
-          const shareTitle = `Read "${story.title}" by Linda on My Ebook Site!`;
+          const storyShareUrl = getStoryShareUrl(story.id);
+          const shareTitle = `Read "${story.title}" by Linda Somiari-Stewart`;
           const { preview: descriptionPreview, isTruncated } = truncateDescription(
             story.description
           );
-          const shareDescription =
-            story.description?.length > 150
-              ? story.description.substring(0, 150) + "..."
-              : story.description || "";
 
           const storyPath = `/story/${story.id}`;
 
@@ -141,30 +126,12 @@ function OtherBooks({ stories = [], error = null }) {
                   {isTruncated ? "..." : ""}{" "}
                   <span className="font-semibold text-[#E02B20]">Read More...</span>
                 </p>
-                <div
-                  className="flex flex-col gap-3 mt-auto"
-                  onClick={(e) => e.stopPropagation()}
-                  onKeyDown={(e) => e.stopPropagation()}
-                >
-                  <div className="flex gap-2 flex-wrap cursor-default">
-                    <FacebookShareButton url={storyShareUrl} image_url={shareImageURL} quote={shareTitle}>
-                      <FacebookIcon size={28} round />
-                    </FacebookShareButton>
-                    <TwitterShareButton url={storyShareUrl} title={shareTitle} image_url={shareImageURL}>
-                      <TwitterIcon size={28} round />
-                    </TwitterShareButton>
-                    <LinkedinShareButton
-                      url={storyShareUrl}
-                      title={shareTitle}
-                      summary={shareDescription}
-                      image_url={shareImageURL}
-                    >
-                      <LinkedinIcon size={28} round />
-                    </LinkedinShareButton>
-                    <WhatsappShareButton url={storyShareUrl} title={shareTitle} image_url={shareImageURL}>
-                      <WhatsappIcon size={28} round />
-                    </WhatsappShareButton>
-                  </div>
+                <div className="flex flex-col gap-3 mt-auto">
+                  <SocialShareButtons
+                    url={storyShareUrl}
+                    title={shareTitle}
+                    iconSize={28}
+                  />
                 </div>
               </div>
             </motion.div>
