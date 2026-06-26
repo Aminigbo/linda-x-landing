@@ -3,8 +3,9 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import SocialShareButtons from "@/components/SocialShareButtons";
+import ShareWithPreview from "@/components/ShareWithPreview";
 import { getStoryShareUrl } from "@/lib/share";
+import { getSharePreviewDescription } from "@/lib/sharePreview";
 
 const MAX_DESCRIPTION_LENGTH = 100;
 
@@ -127,10 +128,14 @@ function OtherBooks({ stories = [], error = null }) {
                   <span className="font-semibold text-[#E02B20]">Read More...</span>
                 </p>
                 <div className="flex flex-col gap-3 mt-auto">
-                  <SocialShareButtons
+                  <ShareWithPreview
                     url={storyShareUrl}
-                    title={shareTitle}
+                    title={story.title}
+                    shareTitle={shareTitle}
+                    description={getSharePreviewDescription(story)}
+                    imageUrl={story.image_url || ""}
                     iconSize={28}
+                    compact
                   />
                 </div>
               </div>

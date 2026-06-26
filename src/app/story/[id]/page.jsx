@@ -24,7 +24,10 @@ export async function generateMetadata({ params }) {
   const siteUrl = getSiteUrl();
   const shareUrl = `${siteUrl}/story/${id}`;
   const imageUrl = story.image_url ? `${siteUrl}/api/og/story/${id}` : null;
-  const description = sanitizeMetaText(story.description || story.title, 200);
+  const description = sanitizeMetaText(
+    story.description || story.subtitle || story.title,
+    200
+  );
   const ogTitle = sanitizeMetaText(story.title, 100);
 
   return {
@@ -35,7 +38,9 @@ export async function generateMetadata({ params }) {
       description,
       url: shareUrl,
       siteName: "LINDA SOMAIRI-STEWART",
-      images: imageUrl ? [{ url: imageUrl, alt: ogTitle }] : [],
+      images: imageUrl
+        ? [{ url: imageUrl, alt: ogTitle, width: 1200, height: 630 }]
+        : [],
       type: "article",
     },
     twitter: {
@@ -121,7 +126,12 @@ export default async function StoryPage({ params }) {
             {story.title}
           </h1>
 
-          <StoryShareButtons shareUrl={shareUrl} title={story.title} />
+          <StoryShareButtons
+            shareUrl={shareUrl}
+            title={story.title}
+            description={story.description || story.subtitle || ""}
+            imageUrl={story.image_url || ""}
+          />
 
           <div
             id="popup-story-content"

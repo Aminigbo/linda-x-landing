@@ -32,17 +32,15 @@ export function canUseNativeShare() {
 }
 
 export async function shareViaNative({ title, url, text }) {
-  await navigator.share({
-    title,
-    url,
-    text: text || title,
-  });
+  const payload = { title, url };
+  if (text) payload.text = text;
+  await navigator.share(payload);
 }
 
-export async function shareOnFacebook({ url, title }) {
+export async function shareOnFacebook({ url, title, text }) {
   if (canUseNativeShare()) {
     try {
-      await shareViaNative({ title, url });
+      await shareViaNative({ title, url, text });
       return;
     } catch (error) {
       if (error?.name === "AbortError") return;

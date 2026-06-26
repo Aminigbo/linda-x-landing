@@ -1,14 +1,22 @@
 "use client";
 
-import SocialShareButtons from "@/components/SocialShareButtons";
+import ShareWithPreview from "@/components/ShareWithPreview";
 
-export default function StoryShareButtons({ shareUrl, title }) {
+export default function StoryShareButtons({
+  shareUrl,
+  title,
+  description = "",
+  imageUrl = "",
+}) {
   const shareTitle = `Read "${title}" by Linda Somiari-Stewart`;
 
   return (
-    <SocialShareButtons
+    <ShareWithPreview
       url={shareUrl}
-      title={shareTitle}
+      title={title}
+      shareTitle={shareTitle}
+      description={description}
+      imageUrl={imageUrl}
       iconSize={32}
       showLabel
       className="mb-6"

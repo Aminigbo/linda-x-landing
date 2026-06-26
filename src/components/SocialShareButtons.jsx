@@ -18,17 +18,19 @@ import {
 export default function SocialShareButtons({
   url,
   title,
+  description = "",
   iconSize = 32,
   showLabel = false,
   className = "",
 }) {
   const shareTitle = title;
+  const shareText = description || shareTitle;
 
   const handleFacebookClick = async (event) => {
     event.preventDefault();
     event.stopPropagation();
     try {
-      await shareOnFacebook({ url, title: shareTitle });
+      await shareOnFacebook({ url, title: shareTitle, text: shareText });
     } catch (error) {
       console.error("Facebook share failed:", error);
       window.open(buildFacebookShareUrl(url), "_blank", "noopener,noreferrer");
@@ -96,7 +98,7 @@ export default function SocialShareButtons({
       </a>
 
       <a
-        href={buildWhatsAppShareUrl(url, shareTitle)}
+        href={buildWhatsAppShareUrl(url, shareText)}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Share on WhatsApp"
