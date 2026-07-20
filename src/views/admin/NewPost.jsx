@@ -210,7 +210,7 @@ export default function NewPost() {
                   ) : (
                     <div>
                       <Editor
-                        apiKey="3f404814a7855a4fc50167370fa9c48980bf6a98a4143159c65694e14d5f322e"
+                        apiKey="dpfa2yqv0zzzibgk8234t52r5gad7gfcaaukn7tt08jlwlg4"
                         value={formData.content}
                         onEditorChange={(content) => handleInputChange('content', content)}
                         onInit={() => console.log('TinyMCE Editor loaded successfully')}
