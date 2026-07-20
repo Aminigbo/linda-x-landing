@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const SHAREVIRAL_API_URL =
-  "https://shareviral-server-334229637235.us-central1.run.app/api/v1/developer/make-post";
+  "https://shareviral-server-production.up.railway.app/api/v1/developer/make-post";
 
 export async function POST(request) {
   const token = process.env.SHAREVIRAL_API_TOKEN;

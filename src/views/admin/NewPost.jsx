@@ -33,7 +33,7 @@ export default function NewPost() {
       .trim('-')
   }
 
-  const shareToFacebook = async (post) => {
+  const shareToSocial = async (post) => {
     try {
       const response = await fetch('/api/share/post', {
         method: 'POST',
@@ -50,13 +50,13 @@ export default function NewPost() {
 
       if (!response.ok) {
         console.error('ShareViral error:', data)
-        return { success: false, error: data.error || 'Failed to share to Facebook' }
+        return { success: false, error: data.error || 'Failed to share post to social accounts' }
       }
 
-      console.log('Shared to Facebook via ShareViral:', data.result)
+      console.log('Shared via ShareViral:', data.result)
       return { success: true, result: data.result }
     } catch (error) {
-      console.error('Error sharing to Facebook:', error)
+      console.error('Error sharing post:', error)
       return { success: false, error: error.message }
     }
   }
@@ -86,9 +86,9 @@ export default function NewPost() {
       if (error) throw error
 
       if (formData.published) {
-        const shareResult = await shareToFacebook(data)
+        const shareResult = await shareToSocial(data)
         if (!shareResult.success) {
-          console.warn('Post saved but Facebook share failed:', shareResult.error)
+          console.warn('Post saved but social share failed:', shareResult.error)
         }
       }
 
@@ -259,7 +259,7 @@ export default function NewPost() {
                       onChange={(e) => handleInputChange('published', e.target.checked)}
                     />
                     <label htmlFor="published" className="form-label" style={{ marginBottom: 0 }}>
-                      Publish immediately (will also post to Facebook if configured)
+                      Publish immediately (will also post to LinkedIn and X if configured)
                     </label>
                   </div>
                 </div>
