@@ -5,7 +5,7 @@ export async function getStories() {
   const { data, error } = await supabase
     .from("stories")
     .select("id, title, subtitle, description, image_url")
-    .order("id", { ascending: false });
+    .order("created_at", { ascending: false });
 
   return { data: data ?? [], error: error?.message ?? null };
 }
@@ -15,7 +15,7 @@ export async function getArticles() {
   const { data, error } = await supabase
     .from("articles")
     .select("id, title, subtitle, description, image_url")
-    .order("id", { ascending: false });
+    .order("created_at", { ascending: false });
 
   return { data: data ?? [], error: error?.message ?? null };
 }

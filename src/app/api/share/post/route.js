@@ -30,7 +30,7 @@ export async function POST(request) {
     );
   }
 
-  const postUrl = `https://stories.linda-x.com/post/${slug}`;
+  const postUrl = `https://www.linda-x.com/story/${slug}`;
   const postText = `${title}\n\n${description || ""}\n\nRead more: ${postUrl}`.trim();
 
   const formData = new FormData();

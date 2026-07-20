@@ -17,7 +17,7 @@ export default function NewPost() {
     description: '',
     image_url: '',
     tags: '',
-    published: false
+    published: true
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -41,7 +41,7 @@ export default function NewPost() {
         body: JSON.stringify({
           title: post.title,
           description: post.description,
-          slug: post.slug,
+          slug: post.id,
           imageUrl: post.image_url || null,
         }),
       })
