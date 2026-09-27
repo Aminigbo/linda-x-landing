@@ -1,12 +1,14 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import Header from "@/components/Headers";
 import SuggestedStories from "@/components/SuggestedStories";
 import StoryShareButtons from "@/components/StoryShareButtons";
 import { getStories, getStory } from "@/lib/content";
 import { sanitizeMetaText } from "@/lib/metadata";
+import { publicPath, sectionFromTags } from "@/lib/sections";
 import { getSiteUrl } from "@/lib/site";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   const { data: stories } = await getStories();
@@ -37,7 +39,7 @@ export async function generateMetadata({ params }) {
       title: ogTitle,
       description,
       url: shareUrl,
-      siteName: "LINDA SOMAIRI-STEWART",
+      siteName: "LINDA SOMIARI-STEWART",
       images: imageUrl
         ? [{ url: imageUrl, alt: ogTitle, width: 1200, height: 630 }]
         : [],
@@ -78,6 +80,11 @@ export default async function StoryPage({ params }) {
     notFound();
   }
 
+  const section = sectionFromTags(story?.tags, story?.id);
+  if (story && section !== "story") {
+    redirect(publicPath(section, id));
+  }
+
   if (error) {
     return (
       <div className="flex items-center justify-center h-screen bg-black text-white">
@@ -95,7 +102,9 @@ export default async function StoryPage({ params }) {
   }
 
   return (
-    <div className="flex flex-col items-center bg-black min-h-screen p-4">
+    <div className="flex flex-col items-center bg-black min-h-screen">
+      <Header />
+      <div className="w-full flex flex-col items-center p-4">
       <div className="w-full max-w-6xl flex flex-col lg:flex-row gap-8 mt-8 mb-8">
         <article className="flex-1 min-w-0 bg-white rounded-lg shadow-2xl p-6 animate-fade-in relative">
           <Link href="/" className="absolute bottom-0 right-0 lg:-left-26">
@@ -142,6 +151,7 @@ export default async function StoryPage({ params }) {
         </article>
 
         <SuggestedStories stories={suggestedStories} />
+      </div>
       </div>
     </div>
   );

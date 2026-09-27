@@ -4,6 +4,8 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import { getArticles } from "@/lib/content";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Articles",
 };
@@ -22,7 +24,7 @@ export default async function ArticlesPage() {
           <p className="text-red-500">{error}</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {articles.length === 0 && <p>No articles found.</p>}
+            {articles.length === 0 && <p>No articles yet.</p>}
             {articles.map((article) => (
               <div key={article.id} className="shadow-lg rounded-lg">
                 <Link href={`/article/${article.id}`}>

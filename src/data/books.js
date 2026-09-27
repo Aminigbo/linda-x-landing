@@ -30,6 +30,16 @@ export const bookDetails = {
     picture: Img3,
     scribe: "Praise for Tamara: The Gender of God",
     link: "https://docs.google.com/document/d/1w-e5com2ytLpSq62yGDoJmZLm9GgOrpZqqaMFu1doZg/edit?usp=sharing",
+    purchase: [
+      {
+        label: "Kobo",
+        href: "https://www.kobo.com/gb/en/search?query=linda+somiari+stewart&ac=1&acp=linda+somiari+stewart&ac.author=linda+somiari+stewart&sort=Temperature&fclanguages=en",
+      },
+      {
+        label: "Books.by",
+        href: "https://books.by/linda-somiari-stewart",
+      },
+    ],
   },
   "tari-ere-the-picky-virgin": {
     title: "She Who Loved A Lie",
@@ -55,7 +65,17 @@ export const bookDetails = {
       },
     ],
     bg: backgroundImage2,
-    scribe: "Praise for Tari-Ere: The Picky Virgin",
+    scribe: "Praise for She Who Loved A Lie",
+    purchase: [
+      {
+        label: "Kobo",
+        href: "https://www.kobo.com/gb/en/ebook/she-who-loved-a-lie",
+      },
+      {
+        label: "Books.by",
+        href: "https://books.by/linda-somiari-stewart#she-who-loved-a-lie",
+      },
+    ],
     picture: Img4,
     link: "https://docs.google.com/document/d/1FM2U1JiqMEdgFQtdNB2umZHgOKp34UKVPPiBinDfIGU/edit?usp=sharing",
   },
@@ -68,21 +88,20 @@ export const bookDetails = {
       "If you have ever longed to sit at the feet of elders or wondered what the wind forgot to tell you, this book will bring you home.",
     ],
     image: Img5,
-    praise: [
-      {
-        quote:
-          "The square of lost songs is a powerful reawakening. Linda has masterfully brought to light a sacred truth that has long been buried—the divine feminine. It’s deeply spiritual, intellectually engaging, and emotionally healing.",
-        author: "Dr. Amaka O.",
-      },
-      {
-        quote:
-          "This book gave me chills in the best way. Tamara invites you to question, reflect, and reconnect with your spiritual roots. It’s not just a book—it’s an awakening wrapped in story.",
-        author: "Ebiye D.",
-      },
-    ],
+    praise: [],
     bg: backgroundImage,
     picture: Img3,
     scribe: "The Square of Lost Sons",
     link: "https://docs.google.com/document/d/1nXt3jLdqXNwb4w0yo886DHvSGBTia6n04Rgv_j6VRKw/edit?usp=sharing",
+    purchase: [
+      {
+        label: "Kobo",
+        href: "https://www.kobo.com/gb/en/search?query=linda+somiari+stewart&ac=1&acp=linda+somiari+stewart&ac.author=linda+somiari+stewart&sort=Temperature&fclanguages=en",
+      },
+      {
+        label: "Books.by",
+        href: "https://books.by/linda-somiari-stewart",
+      },
+    ],
   },
 };

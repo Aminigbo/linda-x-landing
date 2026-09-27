@@ -21,7 +21,7 @@ export async function POST(request) {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 
-  const { title, description, slug, imageUrl } = body;
+  const { title, description, slug, imageUrl, path } = body;
 
   if (!title || !slug) {
     return NextResponse.json(
@@ -30,7 +30,9 @@ export async function POST(request) {
     );
   }
 
-  const postUrl = `https://www.linda-x.com/story/${slug}`;
+  const postUrl = path
+    ? `https://www.linda-x.com${path.startsWith("/") ? path : `/${path}`}`
+    : `https://www.linda-x.com/story/${slug}`;
   const postText = `${title}\n\n${description || ""}\n\nRead more: ${postUrl}`.trim();
 
   const formData = new FormData();

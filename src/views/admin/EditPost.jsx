@@ -8,6 +8,7 @@ import SimpleEditor from '@/components/admin/SimpleEditor'
 import ImageUpload from '@/components/admin/ImageUpload'
 import { Save, ArrowLeft } from 'lucide-react'
 import AdminLayout from '@/components/admin/AdminLayout'
+import { sectionFromTags, tagsForSection, visibleTags } from '@/lib/sections'
 
 export default function EditPost() {
   const { id } = useParams()
@@ -18,6 +19,7 @@ export default function EditPost() {
     description: '',
     image_url: '',
     tags: '',
+    section: 'story',
     published: false
   })
   const [loading, setLoading] = useState(false)
@@ -46,7 +48,8 @@ export default function EditPost() {
         content: data.content || '',
         description: data.description || '',
         image_url: data.image_url || '',
-        tags: Array.isArray(data.tags) ? data.tags.join(', ') : '',
+        tags: visibleTags(data.tags).join(', '),
+        section: sectionFromTags(data.tags, data.id),
         published: data.published || false
       })
     } catch (error) {
@@ -73,12 +76,13 @@ export default function EditPost() {
 
     try {
       const slug = generateSlug(formData.title)
-      const tags = formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : []
-      
+      const enteredTags = formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : []
+      const { section, ...fields } = formData
+
       const postData = {
-        ...formData,
+        ...fields,
         slug,
-        tags,
+        tags: tagsForSection(enteredTags, section),
         published_at: formData.published ? new Date().toISOString() : null
       }
 
@@ -180,6 +184,22 @@ export default function EditPost() {
                   onChange={(e) => handleInputChange('description', e.target.value)}
                   placeholder="Brief description of the post..."
                 />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="section" className="form-label">
+                  Publish to
+                </label>
+                <select
+                  id="section"
+                  className="form-input"
+                  value={formData.section}
+                  onChange={(e) => handleInputChange('section', e.target.value)}
+                >
+                  <option value="story">Short story</option>
+                  <option value="article">Article</option>
+                  <option value="press">Press</option>
+                </select>
               </div>
 
               <div className="form-group">

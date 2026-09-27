@@ -62,7 +62,7 @@ const Header = () => {
                     href="/book/the-square-of-lost-sons"
                     className={navClass("/book/the-square-of-lost-sons")}
                   >
-                    The Square Of Lost Sons
+                    The Square of Lost Sons
                   </Link>
                 </li>
               </ul>
@@ -75,8 +75,8 @@ const Header = () => {
           <Link href="/articles" className={navClass("/articles")}>
             Articles
           </Link>
-          <Link href="/events" className={navClass("/events")}>
-            News & Events
+          <Link href="/press" className={navClass("/press")}>
+            Press
           </Link>
           <Link href="/contact" className={navClass("/contact")}>
             Contact
@@ -97,8 +97,8 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden fixed top-16 left-12.5 z-50">
-          <div className="w-[300px] bg-black border-t-4 border-[#CCFF00] px-6 py-6 text-sm uppercase font-medium animate-slide-down">
+        <div className="md:hidden fixed top-16 left-4 right-4 z-50">
+          <div className="w-full bg-black border-t-4 border-[#CCFF00] px-6 py-6 text-sm uppercase font-medium animate-slide-down">
             <div className="flex flex-col space-y-4 text-left text-white">
               <Link
                 href="/"
@@ -125,7 +125,7 @@ const Header = () => {
                       className={navClass("/book/woyingi-god-is-a-woman")}
                       onClick={() => setMenuOpen(false)}
                     >
-                      Woyingi: God is a Woman
+                      Tamara: The Gender of God
                     </Link>
                   </li>
                   <li>
@@ -134,7 +134,16 @@ const Header = () => {
                       className={navClass("/book/tari-ere-the-picky-virgin")}
                       onClick={() => setMenuOpen(false)}
                     >
-                      Tari-Ere: The Picky Virgin
+                      She Who Loved A Lie
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/book/the-square-of-lost-sons"
+                      className={navClass("/book/the-square-of-lost-sons")}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      The Square of Lost Sons
                     </Link>
                   </li>
                 </ul>
@@ -155,11 +164,11 @@ const Header = () => {
                 Articles
               </Link>
               <Link
-                href="/events"
-                className={navClass("/events")}
+                href="/press"
+                className={navClass("/press")}
                 onClick={() => setMenuOpen(false)}
               >
-                News & Events
+                Press
               </Link>
               <Link
                 href="/contact"

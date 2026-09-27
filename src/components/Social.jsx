@@ -29,7 +29,7 @@ function Social() {
           <div className="relative group w-[100px] h-[100px] mb-4 rounded-full overflow-hidden">
             <img
               src={imageSrc(Img)}
-              alt="Anna Instagram"
+              alt="Linda Somiari-Stewart on Instagram"
               className="w-full h-full object-cover rounded-full transition-transform duration-300 group-hover:scale-110"
             />
             <a

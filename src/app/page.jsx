@@ -6,6 +6,8 @@ import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import { getStories } from "@/lib/content";
 
+export const revalidate = 60;
+
 export default async function HomePage() {
   const { data: stories, error } = await getStories();
 

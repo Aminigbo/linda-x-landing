@@ -1,9 +1,5 @@
-import AllArticles from "@/views/AllArticles";
+import { redirect } from "next/navigation";
 
-export const metadata = {
-  title: "All Articles",
-};
-
-export default function AllArticlesPage() {
-  return <AllArticles />;
+export default function LegacyAllArticlesPage() {
+  redirect("/articles");
 }

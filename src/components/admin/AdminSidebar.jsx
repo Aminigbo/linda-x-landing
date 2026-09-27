@@ -132,7 +132,7 @@ export default function AdminSidebar() {
                 className={isActive("/admin/articles") ? "active" : ""}
               >
                 <FileText size={16} />
-                Stories
+                Posts
               </Link>
             </li>
             <li>

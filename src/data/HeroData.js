@@ -33,7 +33,7 @@ export const heroSections = [
   {
     id: "the-square-of-lost-sons",
     title:
-      "The Square of Lost Songs is a soul-stirring collection of modern folktales that echo with the wisdom of ancient drums and the defiance of forgotten tongues",
+      "The Square of Lost Sons is a soul-stirring collection of modern folktales that echo with the wisdom of ancient drums and the defiance of forgotten tongues",
     description: "",
     link: "/book/the-square-of-lost-sons",
     image: imageSrc(Img3),

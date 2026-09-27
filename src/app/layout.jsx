@@ -4,8 +4,8 @@ import { getSiteUrl } from "@/lib/site";
 export const metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: "LINDA SOMAIRI-STEWART",
-    template: "%s | LINDA SOMAIRI-STEWART",
+    default: "LINDA SOMIARI-STEWART",
+    template: "%s | LINDA SOMIARI-STEWART",
   },
   description:
     "Author of Tamara: The Gender of God, She Who Loved A Lie, and The Square of Lost Sons.",

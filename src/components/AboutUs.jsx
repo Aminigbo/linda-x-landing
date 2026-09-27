@@ -33,7 +33,7 @@ function AboutUs() {
             </p>
             <p>
               Linda Somiari-Stewart is a journalist-turned-griot with a passion
-              for preserving Africa’s rich values,culture and traditions through
+              for preserving Africa’s rich values, culture and traditions through
               storytelling. With an extensive background in both print and
               television media, she has dedicated her life to reviving Africa’s
               once cherished but now fading values. <br />
@@ -41,8 +41,8 @@ function AboutUs() {
               essence of life through the art of storytelling. <br />
               Her acclaimed works—including Woyingi: God Is a Woman ( Tamara:
               The Gender of God) , The Legend of Tari-Ere: The Picky Virgin( She
-              who loved a lie)and The Square of Lost Songs-A Modern Griot’s
-              Tales -celebrate African folklore while boldly exploring themes of
+              who loved a lie) and The Square of Lost Sons: A Modern Griot’s
+              Tales — celebrate African folklore while boldly exploring themes of
               gender, identity, the divine feminine and the supernatural.
               Drawing deeply from her Ijaw -African heritage, her storytelling
               weaves myth, memory, and philosophy into rich, lyrical narratives
@@ -63,7 +63,7 @@ function AboutUs() {
             </p>
             <p>
               She doesn’t just tell stories. She helps people find their own
-              stories.<br /> Linda Somiari- Stewart is a living proof that wisdom
+              stories.<br /> Linda Somiari-Stewart is living proof that wisdom
               deepens with time and that the griot’s flame burns strong for the
               generations to come.
             </p>

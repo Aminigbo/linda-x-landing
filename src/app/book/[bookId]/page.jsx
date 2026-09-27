@@ -1,9 +1,8 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { X } from "lucide-react";
 import Header from "@/components/Headers";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
+import OrderBook from "@/components/OrderBook";
 import { bookDetails } from "@/data/books";
 import { imageSrc } from "@/lib/image";
 
@@ -54,37 +53,8 @@ export default async function BookPage({ params }) {
               ))}
             </ul>
 
-            <div className="hidden md:flex mt-6 justify-end">
-              <details className="relative">
-                <summary className="list-none cursor-pointer bg-[#048152] text-white px-6 py-3 hover:bg-transparent hover:border-2 hover:border-[#A72024] hover:text-[#A72024] transition">
-                  ORDER NOW
-                </summary>
-                <div className="fixed inset-0 z-[1000] flex items-center justify-between px-4 overflow-hidden">
-                  <div className="rounded-lg p-6 w-full text-center">
-                    <div className="flex justify-end mb-10">
-                      <X size={40} className="text-2xl text-white" />
-                    </div>
-                    <div className="grid gap-4 bg-[#262626] py-7 mb-4 lg:grid-cols-2">
-                      <a
-                        href="https://www.kobo.com/gb/en/search?query=linda+somiari+stewart&ac=1&acp=linda+somiari+stewart&ac.author=linda+somiari+stewart&sort=Temperature&fclanguages=en"
-                        className="bg-[#eb2e34] text-white px-4 py-2 rounded w-[200px] lg:w-[150px] mx-auto"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Kobo.com
-                      </a>
-                      <a
-                        href="https://books.by/linda-somiari-stewart#she-who-loved-a-lie"
-                        className="bg-[#eb2e34] text-white px-4 py-2 rounded w-[200px] lg:w-[150px] mx-auto"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Book.by
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </details>
+            <div className="mt-6 flex justify-start md:justify-end">
+              <OrderBook links={book.purchase} />
             </div>
           </div>
 
@@ -111,52 +81,56 @@ export default async function BookPage({ params }) {
           </div>
         </div>
 
-        <div className="w-full lg:w-1/2 space-y-4">
-          <div className="bg-[#262626] text-white text-center p-10 rounded-md shadow-md text-sm sm:text-base">
-            AUDIO EXTRACT COMING SOON.....
-          </div>
-          <div className="bg-[#262626] text-white text-left p-3 rounded-md shadow-md text-sm sm:text-base">
-            Read the first chapter free (click the image)
-          </div>
+        <div className="w-full lg:w-1/2 flex items-center">
+          <a
+            href={book.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-[#A72024] text-white text-center px-6 py-4 rounded-md shadow-md text-base sm:text-lg hover:bg-[#870f18] transition"
+          >
+            Read the first chapter free
+          </a>
         </div>
       </section>
 
-      <section
-        className="relative w-full flex flex-col gap-8 py-10 items-center"
-        style={{
-          backgroundImage: `url(${imageSrc(book.bg)})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="absolute inset-0 bg-[#080808] opacity-90 z-0"></div>
+      {book.praise?.length > 0 && (
+        <section
+          className="relative w-full flex flex-col gap-8 py-10 items-center"
+          style={{
+            backgroundImage: `url(${imageSrc(book.bg)})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="absolute inset-0 bg-[#080808] opacity-90 z-0"></div>
 
-        <div className="relative z-10 w-full flex flex-col items-center gap-6">
-          <div className="bg-black text-white p-4 rounded-md w-full flex flex-col items-center shadow-lg">
-            <img
-              src={imageSrc(book.picture)}
-              alt="Book"
-              className="w-full max-w-xs sm:max-w-sm md:max-w-md object-contain rounded"
-            />
-            <h1 className="mt-4 text-lg sm:text-xl md:text-3xl font-semibold text-[#A72024] text-center">
-              {book.scribe}
-            </h1>
-          </div>
+          <div className="relative z-10 w-full flex flex-col items-center gap-6">
+            <div className="bg-black text-white p-4 rounded-md w-full flex flex-col items-center shadow-lg">
+              <img
+                src={imageSrc(book.picture)}
+                alt=""
+                className="w-full max-w-xs sm:max-w-sm md:max-w-md object-contain rounded"
+              />
+              <h1 className="mt-4 text-lg sm:text-xl md:text-3xl font-semibold text-[#A72024] text-center">
+                {book.scribe}
+              </h1>
+            </div>
 
-          <div className="flex justify-center items-center w-full">
-            <div className="text-white text-base sm:text-lg md:text-xl leading-relaxed text-center max-w-3xl p-1.5">
-              <dl>
-                {book.praise.map((item) => (
-                  <div key={item.author}>
-                    <dd>{item.quote}</dd>
-                    <dt className="font-semibold">{item.author}</dt>
-                  </div>
-                ))}
-              </dl>
+            <div className="flex justify-center items-center w-full">
+              <div className="text-white text-base sm:text-lg md:text-xl leading-relaxed text-center max-w-3xl p-1.5">
+                <dl>
+                  {book.praise.map((item) => (
+                    <div key={item.author} className="mb-6">
+                      <dd>{item.quote}</dd>
+                      <dt className="font-semibold mt-2">{item.author}</dt>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <Newsletter />
       <Footer />

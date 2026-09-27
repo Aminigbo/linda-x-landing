@@ -8,6 +8,7 @@ import SimpleEditor from '@/components/admin/SimpleEditor'
 import ImageUpload from '@/components/admin/ImageUpload'
 import { Save, ArrowLeft } from 'lucide-react'
 import AdminLayout from '@/components/admin/AdminLayout'
+import { publicPath, tagsForSection } from '@/lib/sections'
 
 export default function NewPost() {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ export default function NewPost() {
     description: '',
     image_url: '',
     tags: '',
+    section: 'story',
     published: true
   })
   const [loading, setLoading] = useState(false)
@@ -42,6 +44,7 @@ export default function NewPost() {
           title: post.title,
           description: post.description,
           slug: post.id,
+          path: publicPath(post.section || 'story', post.id),
           imageUrl: post.image_url || null,
         }),
       })
@@ -68,12 +71,13 @@ export default function NewPost() {
 
     try {
       const slug = generateSlug(formData.title)
-      const tags = formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : []
+      const enteredTags = formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : []
+      const { section, ...fields } = formData
 
       const postData = {
-        ...formData,
+        ...fields,
         slug,
-        tags,
+        tags: tagsForSection(enteredTags, section),
         published_at: formData.published ? new Date().toISOString() : null
       }
 
@@ -86,7 +90,7 @@ export default function NewPost() {
       if (error) throw error
 
       if (formData.published) {
-        const shareResult = await shareToSocial(data)
+        const shareResult = await shareToSocial({ ...data, section })
         if (!shareResult.success) {
           console.warn('Post saved but social share failed:', shareResult.error)
         }
@@ -172,6 +176,25 @@ export default function NewPost() {
                     onChange={(e) => handleInputChange('description', e.target.value)}
                     placeholder="Brief description of the post..."
                   />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="section" className="form-label">
+                    Publish to
+                  </label>
+                  <select
+                    id="section"
+                    className="form-input"
+                    value={formData.section}
+                    onChange={(e) => handleInputChange('section', e.target.value)}
+                  >
+                    <option value="story">Short story</option>
+                    <option value="article">Article</option>
+                    <option value="press">Press</option>
+                  </select>
+                  <p style={{ marginTop: 'var(--space-2)', fontSize: 'var(--font-size-xs)', color: 'var(--gray-500)' }}>
+                    Short stories appear on the homepage. Articles appear on the Articles page. Press is for coverage of your work.
+                  </p>
                 </div>
 
                 <div className="form-group">

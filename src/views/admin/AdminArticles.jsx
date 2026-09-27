@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase/client'
 import { formatDistanceToNow } from 'date-fns'
 import { Edit, Trash2, Eye, EyeOff, Plus, Search, ChevronUp, ChevronDown, BarChart3, FileText, TrendingUp, Calendar, Filter, Tag } from 'lucide-react'
 import AdminLayout from '@/components/admin/AdminLayout'
+import { SECTION_LABELS, sectionFromTags } from '@/lib/sections'
 
 // Right Sidebar Component for Articles Management
 function ArticlesRightSidebar({ posts, filteredPosts }) {
@@ -246,7 +247,7 @@ function ArticlesRightSidebar({ posts, filteredPosts }) {
               fontSize: 'var(--font-size-sm)',
               padding: 'var(--space-4)'
             }}>
-              No articles yet
+              No posts yet
             </div>
           ) : (
             recentPosts.map((post) => (
@@ -525,13 +526,13 @@ export default function AdminArticles() {
       }
     >
       <div className="page-header">
-        <h1 className="page-title">All Articles</h1>
+        <h1 className="page-title">All posts</h1>
         <Link
           href="/admin/new-post"
           className="btn btn-primary"
         >
           <Plus size={16} />
-          New Article
+          New post
         </Link>
       </div>
 
@@ -557,7 +558,7 @@ export default function AdminArticles() {
           />
           <input
             type="text"
-            placeholder="Search articles..."
+            placeholder="Search posts..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             style={{
@@ -595,7 +596,7 @@ export default function AdminArticles() {
 
         {/* Results Count */}
         <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--gray-500)' }}>
-          {filteredAndSortedPosts.length} of {posts.length} articles
+          {filteredAndSortedPosts.length} of {posts.length} posts
         </div>
       </div>
 
@@ -604,19 +605,19 @@ export default function AdminArticles() {
           {posts.length === 0 ? (
             <>
               <h2 style={{ fontSize: 'var(--font-size-xl)', color: 'var(--gray-600)', marginBottom: 'var(--space-4)' }}>
-                No articles yet
+                No posts yet
               </h2>
               <Link
                 href="/admin/new-post"
                 className="btn btn-primary btn-lg"
               >
-                Create your first article
+                Create your first post
               </Link>
             </>
           ) : (
             <>
               <h2 style={{ fontSize: 'var(--font-size-xl)', color: 'var(--gray-600)', marginBottom: 'var(--space-4)' }}>
-                No articles match your filters
+                No posts match your filters
               </h2>
               <button
                 onClick={() => {
@@ -656,6 +657,9 @@ export default function AdminArticles() {
                   <td>
                     <div style={{ fontWeight: 600, color: 'var(--gray-900)', marginBottom: 'var(--space-1)' }}>
                       {post.title}
+                    </div>
+                    <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--gray-500)', marginBottom: 'var(--space-1)' }}>
+                      {SECTION_LABELS[sectionFromTags(post.tags, post.id)]}
                     </div>
                     {post.description && (
                       <div style={{ fontSize: 'var(--font-size-sm)', color: 'var(--gray-500)', lineHeight: '1.4' }}>

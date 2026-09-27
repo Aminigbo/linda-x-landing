@@ -50,7 +50,7 @@ function ContactMe() {
             <div className="w-full lg:w-[300px] flex-shrink-0">
               <img
                 src={imageSrc(Img)}
-                alt="Contact Anna"
+                alt="Linda Somiari-Stewart"
                 className="rounded-md w-full shadow-lg"
               />
             </div>
@@ -106,7 +106,7 @@ function ContactMe() {
                   For event bookings, media appearances, or publicity-related
                   inquiries, kindly email me directly{" "}
                   <a
-                    href="mailto:booklinda@linda-x.com "
+                    href="mailto:booklinda@linda-x.com"
                     className=" text-[#A72024]"
                   >
                     booklinda@linda-x.com.
