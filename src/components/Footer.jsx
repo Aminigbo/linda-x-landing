@@ -6,8 +6,33 @@ import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 function Footer() {
   return (
     <div>
-      <footer className="px-6 md:px-12 py-8 flex flex-col md:flex-row items-center justify-center text-gray-500 bg-[#171717]">
-        <div className="flex space-x-6 text-xl mb-4 md:mb-0">
+      <footer className="px-6 md:px-12 py-8 flex flex-col items-center text-center text-gray-300 bg-[#171717]">
+        <div className="mb-6 text-sm leading-relaxed">
+          <p className="font-semibold mb-3">To purchase any of the books, contact:</p>
+          <p className="font-semibold">Dati Harry</p>
+          <p>
+            <a href="tel:+2349076493507">09076493507</a>
+          </p>
+          <p className="mb-3">
+            <a href="mailto:datiharry@gmail.com">datiharry@gmail.com</a>
+          </p>
+          <p className="font-semibold">To purchase (UK)</p>
+          <p className="mb-3">
+            <a href="mailto:fortheappleidsaint@gmail.com">
+              fortheappleidsaint@gmail.com
+            </a>
+          </p>
+          <p className="font-semibold">Stewart Ezekiel</p>
+          <p>
+            <a href="tel:+2349030643105">09030643105</a>
+          </p>
+          <p>
+            <a href="mailto:info.stewartofficial@gmail.com">
+              info.stewartofficial@gmail.com
+            </a>
+          </p>
+        </div>
+        <div className="flex space-x-6 text-xl text-gray-500">
           <a
             href="https://www.facebook.com/share/16H5Kn7dHk/"
             target="_blank"

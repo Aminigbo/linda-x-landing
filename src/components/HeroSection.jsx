@@ -8,6 +8,10 @@ import { imageSrc } from "@/lib/image";
 function HeroSection({ section }) {
   const { id, title, description, link, image, background, color, extraImg } =
     section;
+  const isExternal = /^https?:\/\//.test(link);
+  const linkProps = isExternal
+    ? { target: "_blank", rel: "noopener noreferrer" }
+    : {};
 
   return (
     <div
@@ -35,7 +39,7 @@ function HeroSection({ section }) {
           </h1>
           {description && <p className="text-lg md:text-xl">{description}</p>}
           <div className="hidden md:block mt-6 justify-center">
-            <Link href={link}>
+            <Link href={link} {...linkProps}>
               <button
                 className="mt-4 text-black px-6 py-3 hover:bg-transparent hover:border-2 transition"
                 style={{
@@ -57,7 +61,7 @@ function HeroSection({ section }) {
 
         {/* Image Content */}
         <div className="flex justify-center md:justify-end">
-          <Link href={link}>
+          <Link href={link} {...linkProps}>
             <img
               src={imageSrc(image)}
               alt="Cover"
@@ -68,7 +72,7 @@ function HeroSection({ section }) {
 
         {/* Mobile Button */}
         <div className="block md:hidden mt-6 order-3 w-full text-center">
-          <Link href={link}>
+          <Link href={link} {...linkProps}>
             <button
               className="w-[180px] hover:bg-transparent hover:border text-black px-5 py-3 text-sm transition-all duration-300"
               style={{

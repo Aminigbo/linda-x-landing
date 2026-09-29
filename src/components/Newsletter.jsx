@@ -57,7 +57,7 @@ function Newsletter() {
             <div className="bg-[#A72024] p-6 rounded-md text-center shadow-md flex flex-col items-center">
               <p className="text-lg text-white mb-6">
                 Thanks for coming aboard! You&apos;re now on the Readers&apos;
-                Club list.
+                Club list. A welcome note is on its way.
               </p>
               <button
                 className="mt-2 p-3 rounded-full bg-[#D7FF00] hover:bg-[#b6cc00] transition-colors"

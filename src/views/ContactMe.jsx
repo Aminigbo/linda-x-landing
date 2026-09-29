@@ -158,7 +158,8 @@ function ContactMe() {
                   Thanks for coming aboard!
                 </h3>
                 <p className="text-lg text-white">
-                  You&apos;re now on the Readers&apos; Club list.
+                  You&apos;re now on the Readers&apos; Club list. A welcome
+                  note is on its way.
                 </p>
                 <button
                   className="mt-6 px-6 py-2 text-white font-semibold"

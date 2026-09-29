@@ -6,12 +6,26 @@ import Img3 from "../assets/Piano.webp";
 import Img5 from "../assets/The Square of Lost Songs.jpg";
 import Img4 from "../assets/praise-bits-2.webp";
 
+const publicationDefaults = {
+  date: "2025",
+  publisher: "A Production of LINDA SOMIARI-STEWART",
+  address: "House 11, B2 Street, CITEC Estate Mbora, Abuja",
+  edition: "First Edition",
+  format: "Hard Copy",
+  language: "English",
+  genre: "Fiction",
+  author: "LINDA SOMIARI-STEWART (LINDA X)",
+};
+
+function publication(details) {
+  return { ...publicationDefaults, ...details };
+}
+
 export const bookDetails = {
   "woyingi-god-is-a-woman": {
     title: "Tamara: The Gender of God",
     description: [
-      "Long before we saw ourselves here, Tamara ruled the multiverse. But history remembers only what power permits. This is the Ijaw mythology of the one the world unmade, the name they silenced, the gender they rewrote.",
-      "A bold retelling rooted in ancestral memory and mythic resistance, Tamara: The Gender of God reclaims the forgotten feminine at the heart of creation and dares to ask: What if God is She?",
+      "Before the stories were written down, they were whispered around firelight. Before lessons were taught in classrooms, they were carried through generations in tales of courage, wisdom, consequence, and wonder. *Firelight Fables* rekindles the magic of African folktales for a new generation, bringing together timeless stories that entertain, inspire, and preserve the wisdom of ancestral memory. A captivating collection where every tale sparks imagination, carries a lesson, and keeps the fire of African storytelling alive."
     ],
     image: Img,
     praise: [
@@ -30,6 +44,11 @@ export const bookDetails = {
     picture: Img3,
     scribe: "Praise for Tamara: The Gender of God",
     link: "https://docs.google.com/document/d/1w-e5com2ytLpSq62yGDoJmZLm9GgOrpZqqaMFu1doZg/edit?usp=sharing",
+    publication: publication({
+      title: "FIRELIGHT FABLES (Timeless wisdom for Modern Children)",
+      isbn: "978-978-43762-4-5",
+      pages: "72 pages",
+    }),
     purchase: [
       {
         label: "Kobo",
@@ -44,12 +63,8 @@ export const bookDetails = {
   "tari-ere-the-picky-virgin": {
     title: "She Who Loved A Lie",
     description: [
-      "An Ijaw Folktale About Love, Loss and Return. She Who Loved a Lie: An Ijaw folktale of love, loss, and return",
-      "Tari-Ere was a proud virgin-beautiful, bold, and unimpressed by the many suitors who sought her hand. But when a mysterious stranger arrived, speaking sweet words and cloaked in charm, her guarded heart gave way.",
-      "She had no idea she was marrying a water god in disguise.",
-      "Swept into the oceanic realm, Tari-Ere wept as she discovered the truth. Trapped between worlds, stripped of all she knew, she found the strength to endure and by a twist of fate, was returned to her people.",
-      "Now wiser and humbled, Tari-Ere listens to the wisdom of her parents and opens her heart anew. This time, she chooses with clarity.",
-      "She Who Loved a Lie is a timeless tale from the Niger Delta reminding young hearts that not all that glitters is true love, and that sometimes the path to joy begins with a painful awakening.",
+      "Tari-Ere was beautiful, discerning, and certain that no man in her village was worthy of her heart. But fate had other plans. When she falls in love with a mysterious being beyond her world, Tari-Ere is drawn into an extraordinary journey that tests her courage, resourcefulness, and understanding of love.",
+      "Rooted in the rich oral traditions of the Ijaw people of Nigeria’s Niger Delta, The Legend of Tari-Ere: The Picky Virgin is a captivating tale of love, mystery, humility, and self-discovery. As Tari-Ere navigates a world unlike her own and wins the favor of a formidable mother-in-law, she learns lessons that ultimately lead her home—and transform the way she sees love, family, and herself.",
     ],
     image: Img2,
     praise: [
@@ -77,22 +92,32 @@ export const bookDetails = {
       },
     ],
     picture: Img4,
-    link: "https://docs.google.com/document/d/1FM2U1JiqMEdgFQtdNB2umZHgOKp34UKVPPiBinDfIGU/edit?usp=sharing",
+    link: "https://docs.google.com/document/d/1NfhvhNciV-teuqLPpdcDHFBn5gIdvBO0PN76uOxqSyk/edit?usp=sharing",
+    publication: publication({
+      title: "THE LEGEND OF TARI-ERE (The Picky Virgin)",
+      isbn: "979-978-44361-5-6",
+      pages: "92 pages",
+    }),
   },
   "the-square-of-lost-sons": {
     title: "The Square of Lost Sons: A Modern Griot Tales",
     description: [
-      "In a world that traded wisdom for wireless, and firelight for false light, the griot returns…",
-      "The Square of Lost Sons is a soul-stirring collection of modern folktales that echo with the wisdom of ancient drums and the defiance of forgotten tongues. From wind-shamed princes and dancing daughters who could not stop, to eagles who dreamed beyond the clouds and spiders repaying old debts, Linda Somiari-Stewart revives the griot’s sacred calling: to remember, to rebuke, to restore.",
-      "Each tale is a fire lit against forgetfulness, a song for the children of the diaspora and dreamers who long for rootedness. Here, ancestral spirits speak not from graves but from the spaces we once abandoned— courtyards, firesides, names, and truths.",
-      "If you have ever longed to sit at the feet of elders or wondered what the wind forgot to tell you, this book will bring you home.",
+      "Before wisdom was written in books, it was carried in stories. Before questions found answers, they were whispered around the story circle. **Whispers from the Story Circle: Echoes of African Wisdom for Minds in Bloom** gathers timeless African folktales for young minds standing at the edge of becoming—curious, thoughtful, and beginning to wonder about life, identity, courage, justice, and purpose.",
+      "These are not simply stories of talking animals and clever tricksters. They are echoes of an older wisdom, woven with quiet truths and enduring lessons. Through wit, wonder, and reflection, each tale invites young readers to listen beyond the words—to discover what the stories awaken within them.",
+      "A collection for minds in bloom, where ancient wisdom meets new questions, and every story has something more to say.",
     ],
     image: Img5,
     praise: [],
     bg: backgroundImage,
     picture: Img3,
     scribe: "The Square of Lost Sons",
-    link: "https://docs.google.com/document/d/1nXt3jLdqXNwb4w0yo886DHvSGBTia6n04Rgv_j6VRKw/edit?usp=sharing",
+    link: "https://docs.google.com/document/d/1Kaqh1Ea5EhRagPgw0uE1vq0WEolxRwDbVmC8aiVqRvA/edit?usp=sharing",
+    publication: publication({
+      title:
+        "WHISPERS FROM THE STORY CIRCLE (Echoes of African Wisdom for Minds in Bloom)",
+      isbn: "978-978-46622-4-5",
+      pages: "165 pages",
+    }),
     purchase: [
       {
         label: "Kobo",

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { sendReadersClubWelcome } from "@/lib/readersClubEmail";
 import { createServiceClient } from "@/lib/supabase/server";
 
 export async function POST(request) {
@@ -62,5 +63,14 @@ export async function POST(request) {
     );
   }
 
-  return NextResponse.json({ success: true, member: data });
+  let emailSent = false;
+
+  try {
+    const welcome = await sendReadersClubWelcome({ name, email });
+    emailSent = welcome.sent;
+  } catch (emailError) {
+    console.error("Readers club welcome email failed:", emailError);
+  }
+
+  return NextResponse.json({ success: true, member: data, emailSent });
 }

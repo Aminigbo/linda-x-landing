@@ -10,9 +10,9 @@ export const heroSections = [
   {
     id: "woyingi-god-is-a-woman",
     title:
-      "Another book in Linda's captivating folktale series, Tamara: The Gender of God, is out now!",
+      "Another enchanting addition to Linda’s captivating folktale collection, Firelight Fables is out now!",
     description:
-      "A thought-provoking exploration of the Divine, weaving together history, spirituality, and culture. A powerful narrative that challenges perceptions and celebrates the sacred feminine.",
+      "A heartwarming collection of African folktales lovingly reimagined for young minds. Filled with clever tortoises, fearless girls, wise elders, and unforgettable characters, these timeless stories spark curiosity, teach enduring values, and keep the magic of African storytelling alive for a new generation.",
     link: "/book/woyingi-god-is-a-woman",
     image: imageSrc(Img1),
     background: imageSrc(BackgroundImg1),
@@ -22,8 +22,9 @@ export const heroSections = [
   {
     id: "tari-ere-the-picky-virgin",
     title:
-      "A captivating and enchanting tale inspired by ancient Ijaw legends. She Who Loved a Lie: An Ijaw folktale of love, loss, and return",
-    description: "",
+      "A captivating Ijaw legend of love, self-discovery, and the wisdom of parental guidance, The Legend of Tari-Ere: The Picky Virgin is out now!",
+    description:
+      "A timeless tale of a young woman whose journey through love, mystery, and the unexpected teaches her the enduring value of humility, discernment, and an open heart.",
     link: "/book/tari-ere-the-picky-virgin",
     image: imageSrc(Img2),
     background: imageSrc(BackgroundImg2),
@@ -33,8 +34,8 @@ export const heroSections = [
   {
     id: "the-square-of-lost-sons",
     title:
-      "The Square of Lost Sons is a soul-stirring collection of modern folktales that echo with the wisdom of ancient drums and the defiance of forgotten tongues",
-    description: "",
+      "A new collection from Linda’s captivating folktale series, Whispers from the Story Circle: Echoes of African Wisdom for Minds in Bloom, is out now!",
+    description: "A beautifully woven collection of African folktales that invites young minds to look beyond the story—to discover wisdom, courage, justice, identity, and purpose. Tales that entertain, provoke thought, and let ancient wisdom whisper into the hearts of a new generation.",
     link: "/book/the-square-of-lost-sons",
     image: imageSrc(Img3),
     background: imageSrc(BackgroundImg2),

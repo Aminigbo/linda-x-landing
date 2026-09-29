@@ -81,7 +81,57 @@ export default async function BookPage({ params }) {
           </div>
         </div>
 
-        <div className="w-full lg:w-1/2 flex items-center">
+        <div className="w-full lg:w-1/2 flex flex-col items-start justify-center gap-8 text-white">
+          {book.publication && (
+            <div className="text-sm sm:text-base leading-relaxed max-w-xl">
+              <h3 className="text-lg sm:text-xl font-semibold tracking-wide mb-4">
+                PUBLICATION DETAILS
+              </h3>
+              <dl className="space-y-1">
+                <div>
+                  <dt className="inline font-semibold">Book Title: </dt>
+                  <dd className="inline">{book.publication.title}</dd>
+                </div>
+                <div>
+                  <dt className="inline font-semibold">Publication date: </dt>
+                  <dd className="inline">{book.publication.date}</dd>
+                </div>
+                <div>
+                  <dt className="inline font-semibold">Publisher: </dt>
+                  <dd className="inline">{book.publication.publisher}</dd>
+                  <dd>{book.publication.address}</dd>
+                </div>
+                <div>
+                  <dt className="inline font-semibold">ISBN: </dt>
+                  <dd className="inline">{book.publication.isbn}</dd>
+                </div>
+                <div>
+                  <dt className="inline font-semibold">Edition: </dt>
+                  <dd className="inline">{book.publication.edition}</dd>
+                </div>
+                <div>
+                  <dt className="inline font-semibold">Format: </dt>
+                  <dd className="inline">{book.publication.format}</dd>
+                </div>
+                <div>
+                  <dt className="inline font-semibold">Page count: </dt>
+                  <dd className="inline">{book.publication.pages}</dd>
+                </div>
+                <div>
+                  <dt className="inline font-semibold">Language: </dt>
+                  <dd className="inline">{book.publication.language}</dd>
+                </div>
+                <div>
+                  <dt className="inline font-semibold">Genre/category: </dt>
+                  <dd className="inline">{book.publication.genre}</dd>
+                </div>
+                <div>
+                  <dt className="inline font-semibold">Author: </dt>
+                  <dd className="inline">{book.publication.author}</dd>
+                </div>
+              </dl>
+            </div>
+          )}
           <a
             href={book.link}
             target="_blank"
