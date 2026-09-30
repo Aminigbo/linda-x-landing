@@ -7,6 +7,16 @@ import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import "./Header.css";
 import { RiArrowDownSLine } from "react-icons/ri";
 
+const books = [
+  { href: "/book/firelight-fables", label: "Firelight Fables" },
+  { href: "/book/woyingi-god-is-a-woman", label: "Woyingi: God Is a Woman" },
+  { href: "/book/tari-ere-the-picky-virgin", label: "The Legend of Tari-Ere" },
+  {
+    href: "/book/whispers-from-the-story-circle",
+    label: "Whispers from the Story Circle",
+  },
+];
+
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -41,30 +51,13 @@ const Header = () => {
 
             <div className="dropdown-menu">
               <ul className="space-y-2 text-white text-sm tracking-wide">
-                <li>
-                  <Link
-                    href="/book/woyingi-god-is-a-woman"
-                    className={navClass("/book/woyingi-god-is-a-woman")}
-                  >
-                    Tamara: The Gender of God
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/book/tari-ere-the-picky-virgin"
-                    className={navClass("/book/tari-ere-the-picky-virgin")}
-                  >
-                    She Who Loved A Lie
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/book/the-square-of-lost-sons"
-                    className={navClass("/book/the-square-of-lost-sons")}
-                  >
-                    The Square of Lost Sons
-                  </Link>
-                </li>
+                {books.map((book) => (
+                  <li key={book.href}>
+                    <Link href={book.href} className={navClass(book.href)}>
+                      {book.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -119,33 +112,17 @@ const Header = () => {
                   Books <RiArrowDownSLine className="ml-2" />
                 </span>
                 <ul className="ml-4 mt-2 space-y-2 text-sm">
-                  <li>
-                    <Link
-                      href="/book/woyingi-god-is-a-woman"
-                      className={navClass("/book/woyingi-god-is-a-woman")}
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Tamara: The Gender of God
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/book/tari-ere-the-picky-virgin"
-                      className={navClass("/book/tari-ere-the-picky-virgin")}
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      She Who Loved A Lie
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/book/the-square-of-lost-sons"
-                      className={navClass("/book/the-square-of-lost-sons")}
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      The Square of Lost Sons
-                    </Link>
-                  </li>
+                  {books.map((book) => (
+                    <li key={book.href}>
+                      <Link
+                        href={book.href}
+                        className={navClass(book.href)}
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {book.label}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
 

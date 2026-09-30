@@ -54,7 +54,7 @@ export default async function BookPage({ params }) {
             </ul>
 
             <div className="mt-6 flex justify-start md:justify-end">
-              <OrderBook links={book.purchase} />
+              <OrderBook />
             </div>
           </div>
 

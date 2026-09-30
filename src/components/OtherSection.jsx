@@ -2,20 +2,20 @@
 
 import React from "react";
 import Link from "next/link";
-import Img from "../assets/WOYINGI.jpeg.jpg";
-import Img2 from "../assets/TARI.jpeg.jpg";
+import Img from "../assets/woyingi-god-is-a-woman.jpg";
+import Img2 from "../assets/tari-ere.jpg";
 import { imageSrc } from "@/lib/image";
 
 const books = [
   {
     image: Img,
     href: "/book/woyingi-god-is-a-woman",
-    alt: "Tamara: The Gender of God",
+    alt: "Woyingi: God Is a Woman",
   },
   {
     image: Img2,
     href: "/book/tari-ere-the-picky-virgin",
-    alt: "She Who Loved A Lie",
+    alt: "The Legend of Tari-Ere: The Picky Virgin",
   },
 ];
 

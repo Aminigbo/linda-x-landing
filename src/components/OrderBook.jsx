@@ -3,10 +3,8 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 
-export default function OrderBook({ links = [] }) {
+export default function OrderBook() {
   const [open, setOpen] = useState(false);
-
-  if (links.length === 0) return null;
 
   return (
     <>
@@ -37,18 +35,52 @@ export default function OrderBook({ links = [] }) {
                 <X size={32} />
               </button>
             </div>
-            <div className="grid gap-4">
-              {links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="bg-[#eb2e34] text-white px-4 py-3 rounded text-center"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {link.label}
-                </a>
-              ))}
+            <div className="text-white text-sm sm:text-base leading-relaxed">
+              <h3 className="text-lg font-semibold mb-4">
+                To purchase any of the books, contact:
+              </h3>
+              <ul className="space-y-4">
+                <li>
+                  <p className="font-semibold">1. Dati Harry</p>
+                  <p>
+                    <a href="tel:+2349076493507" className="underline">
+                      09076493507
+                    </a>
+                  </p>
+                  <p>
+                    <a href="mailto:datiharry@gmail.com" className="underline">
+                      datiharry@gmail.com
+                    </a>
+                  </p>
+                </li>
+                <li>
+                  <p className="font-semibold">To purchase (UK)</p>
+                  <p>
+                    <a
+                      href="mailto:fortheappleidsaint@gmail.com"
+                      className="underline"
+                    >
+                      fortheappleidsaint@gmail.com
+                    </a>
+                  </p>
+                </li>
+                <li>
+                  <p className="font-semibold">Stewart Ezekiel</p>
+                  <p>
+                    <a href="tel:+2349030643105" className="underline">
+                      09030643105
+                    </a>
+                  </p>
+                  <p>
+                    <a
+                      href="mailto:info.stewartofficial@gmail.com"
+                      className="underline"
+                    >
+                      info.stewartofficial@gmail.com
+                    </a>
+                  </p>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

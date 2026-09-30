@@ -1,8 +1,9 @@
 import BackgroundImg1 from "@/assets/background.jpg";
-import Img1 from "@/assets/Tamara.jpg";
+import Img1 from "@/assets/firelight-fables.jpg";
 import BackgroundImg2 from "@/assets/background2.webp";
-import Img2 from "@/assets/tariere.jpg";
-import Img3 from "@/assets/The Square of Lost Songs.jpg";
+import Img2 from "@/assets/tari-ere.jpg";
+import Img3 from "@/assets/whispers-from-the-story-circle.jpg";
+import Img4 from "@/assets/firelight-fables.jpg";
 import Img2Extra from "@/assets/bird-and-shroom.webp";
 import { imageSrc } from "@/lib/image";
 
@@ -13,7 +14,7 @@ export const heroSections = [
       "Another enchanting addition to Linda’s captivating folktale collection, Firelight Fables is out now!",
     description:
       "A heartwarming collection of African folktales lovingly reimagined for young minds. Filled with clever tortoises, fearless girls, wise elders, and unforgettable characters, these timeless stories spark curiosity, teach enduring values, and keep the magic of African storytelling alive for a new generation.",
-    link: "/book/woyingi-god-is-a-woman",
+    link: "/book/firelight-fables",
     image: imageSrc(Img1),
     background: imageSrc(BackgroundImg1),
     color: "#D7FF00",
@@ -32,12 +33,22 @@ export const heroSections = [
     extraImg: imageSrc(Img2Extra),
   },
   {
-    id: "the-square-of-lost-sons",
+    id: "WHISPERS FROM THE STORY CIRCLE",
     title:
       "A new collection from Linda’s captivating folktale series, Whispers from the Story Circle: Echoes of African Wisdom for Minds in Bloom, is out now!",
     description: "A beautifully woven collection of African folktales that invites young minds to look beyond the story—to discover wisdom, courage, justice, identity, and purpose. Tales that entertain, provoke thought, and let ancient wisdom whisper into the hearts of a new generation.",
-    link: "/book/the-square-of-lost-sons",
+    link: "/book/whispers-from-the-story-circle",
     image: imageSrc(Img3),
+    background: imageSrc(BackgroundImg2),
+    color: "#d7ff00",
+  },
+  {
+    id: "firelight-fables",
+    title:
+      "Another enchanting addition to Linda’s captivating folktale collection, Firelight Fables is out now!",
+    description: "A heartwarming collection of African folktales lovingly reimagined for young minds. Filled with clever tortoises, fearless girls, wise elders, and unforgettable characters, these timeless stories spark curiosity, teach enduring values, and keep the magic of African storytelling alive for a new generation.",
+    link: "/book/firelight-fables",
+    image: imageSrc(Img4),
     background: imageSrc(BackgroundImg2),
     color: "#d7ff00",
   },
