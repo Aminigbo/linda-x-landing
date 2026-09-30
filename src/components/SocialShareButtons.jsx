@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
   FacebookIcon,
   TwitterIcon,
@@ -25,6 +26,11 @@ export default function SocialShareButtons({
 }) {
   const shareTitle = title;
   const shareText = description || shareTitle;
+  const [canShare, setCanShare] = useState(false);
+
+  useEffect(() => {
+    setCanShare(canUseNativeShare());
+  }, []);
 
   const handleFacebookClick = async (event) => {
     event.preventDefault();
@@ -53,7 +59,7 @@ export default function SocialShareButtons({
         <span className="text-sm text-gray-500 mr-1">Share:</span>
       )}
 
-      {canUseNativeShare() ? (
+      {canShare ? (
         <button
           type="button"
           onClick={handleFacebookClick}

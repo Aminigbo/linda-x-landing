@@ -1,5 +1,5 @@
 import BackgroundImg1 from "@/assets/background.jpg";
-import Img1 from "@/assets/firelight-fables.jpg";
+import Img1 from "@/assets/woyingi-god-is-a-woman.jpg";
 import BackgroundImg2 from "@/assets/background2.webp";
 import Img2 from "@/assets/tari-ere.jpg";
 import Img3 from "@/assets/whispers-from-the-story-circle.jpg";
@@ -11,10 +11,9 @@ export const heroSections = [
   {
     id: "woyingi-god-is-a-woman",
     title:
-      "Another enchanting addition to Linda’s captivating folktale collection, Firelight Fables is out now!",
-    description:
-      "A heartwarming collection of African folktales lovingly reimagined for young minds. Filled with clever tortoises, fearless girls, wise elders, and unforgettable characters, these timeless stories spark curiosity, teach enduring values, and keep the magic of African storytelling alive for a new generation.",
-    link: "/book/firelight-fables",
+      "Another captivating journey into Ijaw mythology, Woyingi: God is a Woman is out now",
+    description:"A mystical exploration of the Niger Delta’s ancient waters, ancestral voices, and divine beings. A powerful retelling of the Ijaw story of a female creatress, weaving together creation, spirituality, folklore, and the enduring wisdom of a people shaped by the tides.",
+    link: "/book/woyingi-god-is-a-woman",
     image: imageSrc(Img1),
     background: imageSrc(BackgroundImg1),
     color: "#D7FF00",

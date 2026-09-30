@@ -62,7 +62,7 @@ export const bookDetails = {
     ],
   },
   "tari-ere-the-picky-virgin": {
-    title: "She Who Loved A Lie",
+    title: "The Legend of Tari-Ere: The Picky Virgin",
     description: [
       "Tari-Ere was beautiful, discerning, and certain that no man in her village was worthy of her heart. But fate had other plans. When she falls in love with a mysterious being beyond her world, Tari-Ere is drawn into an extraordinary journey that tests her courage, resourcefulness, and understanding of love.",
       "Rooted in the rich oral traditions of the Ijaw people of Nigeria’s Niger Delta, The Legend of Tari-Ere: The Picky Virgin is a captivating tale of love, mystery, humility, and self-discovery. As Tari-Ere navigates a world unlike her own and wins the favor of a formidable mother-in-law, she learns lessons that ultimately lead her home—and transform the way she sees love, family, and herself.",
@@ -163,7 +163,7 @@ export const bookDetails = {
     bg: backgroundImage,
     picture: Img3,
     scribe: "Praise for Firelight Fables",
-    link: "https://docs.google.com/document/d/1w-e5com2ytLpSq62yGDoJmZLm9GgOrpZqqaMFu1doZg/edit?usp=sharing",
+    link: "https://docs.google.com/document/d/1dIIuQHqfAx_wMQTn8zMvYs4yf4kJMl-MRSsfE1XktHg/edit?usp=sharing",
     publication: publication({
       title: "FIRELIGHT FABLES (Timeless wisdom for Modern Children)",
       isbn: "978-978-43762-4-5",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Check, Copy, Share2 } from "lucide-react";
 import SocialShareButtons from "@/components/SocialShareButtons";
 import {
@@ -70,6 +70,11 @@ export default function ShareWithPreview({
 }) {
   const [expanded, setExpanded] = useState(!compact);
   const [copied, setCopied] = useState(false);
+  const [canShare, setCanShare] = useState(false);
+
+  useEffect(() => {
+    setCanShare(canUseNativeShare());
+  }, []);
 
   const stopPropagation = (event) => {
     event.stopPropagation();
@@ -153,7 +158,7 @@ export default function ShareWithPreview({
           )}
         </button>
 
-        {canUseNativeShare() && (
+        {canShare && (
           <button
             type="button"
             onClick={handleNativeShare}
